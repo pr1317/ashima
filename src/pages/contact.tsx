@@ -19,9 +19,9 @@ export default function Contact() {
 
       <PageHero image="/images/site/street.jpg" eyebrow="Come and see us"
                 heading={<>Tell us what feels<br /><em>like home.</em></>}
-                marker="Santoshpur, since 1995">
-        <p className="mt-9 max-w-lg text-sm leading-7 text-[hsl(var(--card))]/85">
-          The office is on Aurobindo Road in Santoshpur, and has been since 1995.
+                marker="Santoshpur, since 1993">
+        <p className="mt-9 max-w-lg t-sm text-[hsl(var(--card))]/85">
+          The office is on Aurobindo Road in Santoshpur, and has been since 1993.
           If you would rather see a building than an office, say so and we will
           meet you at one.
         </p>
@@ -31,43 +31,42 @@ export default function Contact() {
       <Section eyebrow="01 / The office" tone="light">
         <div className="mt-10 grid gap-14 lg:grid-cols-[1fr_1.1fr] lg:gap-20">
           <Reveal>
-            <DisplayHeading className="text-[clamp(2.4rem,4.6vw,4.4rem)] text-[hsl(var(--primary))]"
+            <DisplayHeading className="d-1 text-[hsl(var(--primary))]"
                             em="see us.">
               Come and
             </DisplayHeading>
             <address className="mt-9 not-italic">
-              <span className="block font-display text-2xl text-[hsl(var(--primary))]">Ashima Engineering</span>
-              <span className="mt-3 block text-base leading-8 text-[hsl(var(--muted-foreground))]">
+              <span className="block d-3 text-[hsl(var(--primary))]">Ashima Engineering</span>
+              <span className="mt-3 block t-body text-[hsl(var(--muted-foreground))]">
                 {NAP.street}<br />{NAP.locality}<br />
                 {NAP.city} {NAP.postcode}<br />{NAP.region}, India
               </span>
             </address>
             <div className="mt-9 flex flex-wrap gap-3">
               <a href={telHref}
-                 className="flex items-center gap-2 bg-[hsl(var(--primary))] px-5 py-3.5 font-ui text-[10px] uppercase tracking-[0.16em] text-[hsl(var(--card))] transition-transform hover:-translate-y-1"
+                 className="flex items-center gap-2 bg-[hsl(var(--primary))] px-5 py-3.5 u-label text-[hsl(var(--card))] transition-transform hover:-translate-y-1"
                  data-testid="link-contact-phone">
                 <Phone size={14} /> {NAP.phone}
               </a>
               <a href={whatsappHref('Hello, I saw your website.')} rel="noopener" target="_blank"
-                 className="flex items-center gap-2 border border-[hsl(var(--primary))]/30 px-5 py-3.5 font-ui text-[10px] uppercase tracking-[0.16em] text-[hsl(var(--primary))] transition-colors hover:border-[hsl(var(--accent))] hover:text-[hsl(var(--accent))]"
+                 className="flex items-center gap-2 border border-[hsl(var(--primary))]/30 px-5 py-3.5 u-label text-[hsl(var(--primary))] transition-colors hover:border-[hsl(var(--accent))] hover:text-[hsl(var(--accent))]"
                  data-testid="link-contact-whatsapp">
                 WhatsApp <ArrowUpRight size={14} />
               </a>
               <a href={mailHref}
-                 className="flex items-center gap-2 border border-[hsl(var(--primary))]/30 px-5 py-3.5 font-ui text-[10px] uppercase tracking-[0.16em] text-[hsl(var(--primary))] transition-colors hover:border-[hsl(var(--accent))] hover:text-[hsl(var(--accent))]"
+                 className="flex items-center gap-2 border border-[hsl(var(--primary))]/30 px-5 py-3.5 u-label text-[hsl(var(--primary))] transition-colors hover:border-[hsl(var(--accent))] hover:text-[hsl(var(--accent))]"
                  data-testid="link-contact-email">
                 <Mail size={14} /> Email
               </a>
             </div>
-            <p className="mt-7 font-ui text-[10px] uppercase tracking-[0.15em] text-[hsl(var(--muted-foreground))]">
+            <p className="mt-7 u-label text-[hsl(var(--muted-foreground))]">
               {NAP.hours}
             </p>
             <p className="gap-note">
-              <strong>One thing to confirm.</strong> The Google profile currently
-              reads Monday to Saturday, 11am to 8pm, with Sunday closed. Sunday is
-              when working homebuyers actually visit sites, so this page says
-              &ldquo;Sundays by appointment&rdquo; instead. Change the Google profile
-              to match, or change this line.
+              <strong>Match the Google profile to this.</strong> The office is
+              open every day &mdash; Monday to Saturday 10.30am to 8pm, Sunday
+              11am to 5pm. Sunday is when working homebuyers actually visit
+              sites, so the profile should say so too.
             </p>
           </Reveal>
 
@@ -85,11 +84,11 @@ export default function Contact() {
       <Section id="enquire" eyebrow="02 / Let us talk" tone="dark">
         <div className="mt-4 grid gap-14 lg:grid-cols-[.78fr_1.22fr] lg:gap-24">
           <Reveal>
-            <DisplayHeading className="text-[clamp(2.8rem,5.6vw,6rem)] !leading-[.84] tracking-[-.045em]"
+            <DisplayHeading className="d-1"
                             em="you are looking for.">
               Tell us what
             </DisplayHeading>
-            <p className="mt-10 max-w-sm text-sm leading-7 text-[hsl(var(--card))]/63">
+            <p className="mt-10 max-w-sm t-sm text-[hsl(var(--card))]/72">
               Tell us what you&rsquo;re looking for and someone will call you back
               within one working day.
             </p>
@@ -110,7 +109,7 @@ export default function Contact() {
         <div className="mt-2 grid gap-9 lg:grid-cols-[.8fr_1.8fr]">
           <div />
           <Reveal>
-            <DisplayHeading className="max-w-3xl text-[clamp(2.4rem,4.6vw,4.4rem)] text-[hsl(var(--primary))]"
+            <DisplayHeading className="max-w-3xl d-1 text-[hsl(var(--primary))]"
                             em="us.">
               Finding
             </DisplayHeading>
@@ -122,7 +121,7 @@ export default function Contact() {
                   className="border border-[hsl(var(--primary))]/20"
                   referrerPolicy="no-referrer-when-downgrade" src={mapsEmbed(mapQuery)} />
           <a href={mapsDirections(mapQuery)} rel="noopener" target="_blank"
-             className="mt-5 inline-flex items-center gap-2 border-b border-[hsl(var(--primary))]/35 pb-1.5 font-ui text-[10px] uppercase tracking-[0.16em] text-[hsl(var(--primary))] hover:border-[hsl(var(--accent))] hover:text-[hsl(var(--accent))]">
+             className="mt-5 inline-flex items-center gap-2 border-b border-[hsl(var(--primary))]/35 pb-1.5 u-label text-[hsl(var(--primary))] hover:border-[hsl(var(--accent))] hover:text-[hsl(var(--accent))]">
             <MapPin size={13} /> Directions <ArrowUpRight size={13} />
           </a>
         </div>

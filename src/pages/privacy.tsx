@@ -32,17 +32,17 @@ export default function Privacy() {
           {notice.map(([t, d], i) => (
             <Reveal key={t} delay={(i % 4) as 0 | 1 | 2 | 3}>
               <div className="grid gap-3 border-b border-[hsl(var(--primary))]/15 py-7 md:grid-cols-[18rem_1fr] md:gap-10">
-                <h2 className="font-display text-2xl leading-tight text-[hsl(var(--primary))]">{t}</h2>
-                <p className="max-w-2xl text-base leading-8 text-[hsl(var(--muted-foreground))]">{d}</p>
+                <h2 className="d-3 text-[hsl(var(--primary))]">{t}</h2>
+                <p className="max-w-2xl t-body text-[hsl(var(--muted-foreground))]">{d}</p>
               </div>
             </Reveal>
           ))}
           <Reveal>
             <div className="grid gap-3 border-b border-[hsl(var(--primary))]/15 py-7 md:grid-cols-[18rem_1fr] md:gap-10">
-              <h2 className="font-display text-2xl leading-tight text-[hsl(var(--primary))]">
+              <h2 className="d-3 text-[hsl(var(--primary))]">
                 Asking us anything about this
               </h2>
-              <p className="max-w-2xl text-base leading-8 text-[hsl(var(--muted-foreground))]">
+              <p className="max-w-2xl t-body text-[hsl(var(--muted-foreground))]">
                 Write to us at {NAP.email}, or come to the office at {addressOneLine}.
               </p>
             </div>

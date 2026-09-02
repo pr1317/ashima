@@ -1,7 +1,7 @@
 # Ashima Engineering
 
 Marketing and credibility website for a residential property developer in
-South Kolkata, operating since May 1995.
+South Kolkata, founded in 1993, with its first building handed over in 1995.
 
 It is also, legally, a real estate advertisement under Indian law. Read the
 WBRERA section below before changing anything on a project page.

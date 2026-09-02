@@ -9,7 +9,7 @@ import { IS_LAUNCH, NAV } from '@/lib/site';
 export function ReviewBanner() {
   if (IS_LAUNCH) return null;
   return (
-    <p className="bg-[hsl(var(--accent))] px-6 py-2 text-center font-ui text-[10px] uppercase tracking-[0.14em] text-[hsl(var(--card))]"
+    <p className="bg-[hsl(var(--accent))] px-6 py-2 text-center u-label text-[hsl(var(--card))]"
        data-testid="banner-review-build">
       Review build — draft copy, stand-in photographs, unverified sample WBRERA number.{' '}
       <Link href="/credits" className="underline underline-offset-2">Image credits</Link>
@@ -28,7 +28,7 @@ export function SiteHeader() {
   return (
     <>
       <a href="#main"
-         className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:bg-[hsl(var(--primary))] focus:px-4 focus:py-3 focus:font-ui focus:text-[10px] focus:uppercase focus:tracking-[0.16em] focus:text-[hsl(var(--card))]">
+         className="u-label sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:bg-[hsl(var(--primary))] focus:px-4 focus:py-3 focus:text-[hsl(var(--card))]">
         Skip to content
       </a>
 
@@ -43,14 +43,14 @@ export function SiteHeader() {
             {NAV.slice(1).map((n) => (
               <Link key={n.href} href={n.href}
                     aria-current={current === n.href ? 'page' : undefined}
-                    className={`nav-link font-ui text-[10px] uppercase tracking-[0.17em] transition-colors hover:text-[hsl(var(--card))] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[hsl(var(--secondary))] ${
-                      current === n.href ? 'text-[hsl(var(--secondary))]' : 'text-[hsl(var(--card))]/90'}`}
+                    className={`nav-link u-label transition-colors hover:text-[hsl(var(--card))] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[hsl(var(--secondary))] ${
+                      current === n.href ? 'text-[hsl(var(--secondary))]' : 'text-[hsl(var(--card))]/85'}`}
                     data-testid={`link-nav-${n.label.toLowerCase().replaceAll(' ', '-')}`}>
                 {n.label}
               </Link>
             ))}
             <Link href="/contact#enquire"
-                  className="flex items-center gap-2 border border-[hsl(var(--secondary))] px-4 py-3 font-ui text-[10px] uppercase tracking-[0.16em] text-[hsl(var(--secondary))] transition-colors hover:bg-[hsl(var(--secondary))] hover:text-[hsl(var(--primary))] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[hsl(var(--secondary))]"
+                  className="flex items-center gap-2 border border-[hsl(var(--secondary))] px-4 py-3 u-label text-[hsl(var(--secondary))] transition-colors hover:bg-[hsl(var(--secondary))] hover:text-[hsl(var(--primary))] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[hsl(var(--secondary))]"
                   data-testid="link-header-enquire">
               Start a conversation <ArrowUpRight size={14} />
             </Link>
@@ -72,13 +72,13 @@ export function SiteHeader() {
                aria-label="Mobile navigation" data-testid="mobile-navigation">
             {NAV.map((n) => (
               <Link key={n.href} href={n.href}
-                    className="flex items-center justify-between border-b border-[hsl(var(--card))]/15 py-4 font-ui text-[11px] uppercase tracking-[0.15em] text-[hsl(var(--card))]"
+                    className="flex items-center justify-between border-b border-[hsl(var(--card))]/15 py-4 u-label text-[hsl(var(--card))]"
                     data-testid={`link-mobile-${n.label.toLowerCase().replaceAll(' ', '-')}`}>
                 {n.label}<ChevronRight size={15} />
               </Link>
             ))}
             <Link href="/contact#enquire"
-                  className="mt-4 flex items-center justify-center gap-2 bg-[hsl(var(--secondary))] px-4 py-3 font-ui text-[10px] uppercase tracking-[0.14em] text-[hsl(var(--primary))]"
+                  className="mt-4 flex items-center justify-center gap-2 bg-[hsl(var(--secondary))] px-4 py-3 u-label text-[hsl(var(--primary))]"
                   data-testid="link-mobile-enquire">
               Start a conversation <ArrowUpRight size={14} />
             </Link>

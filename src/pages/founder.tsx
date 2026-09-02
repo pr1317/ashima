@@ -12,14 +12,14 @@ export default function Founder() {
     <>
       <Seo path="/about/founder"
            title="Partha Pratim Roy, Ashima Engineering"
-           description="Partha Pratim Roy founded Ashima Engineering in 1995 and has built more than sixty residential projects in South Kolkata since."
+           description="Partha Pratim Roy founded Ashima Engineering in 1993 and has built more than sixty residential projects in South Kolkata since."
            ogImage={PORTRAIT} />
 
       <PageHero image={PORTRAIT} eyebrow="The founder"
                 heading={<>Partha Pratim<br /><em>Roy.</em></>}
-                marker="Founder, since May 1995">
-        <p className="mt-9 max-w-md text-sm leading-7 text-[hsl(var(--card))]/85">
-          Founder. Ashima Engineering, since May 1995.
+                marker="Founder, since 1993">
+        <p className="mt-9 max-w-md t-sm text-[hsl(var(--card))]/85">
+          Founder. Ashima Engineering, since 1993.
         </p>
       </PageHero>
 
@@ -37,20 +37,21 @@ export default function Founder() {
 
           <Reveal delay={1}>
             <div className="max-w-2xl space-y-6">
-              <p className="text-xl leading-relaxed text-[hsl(var(--primary))] lg:text-2xl lg:leading-relaxed">
+              <p className="t-lead text-[hsl(var(--primary))]">
                 Partha Pratim Roy read <b>[SUBJECT]</b> at the University of Calcutta.
               </p>
-              <p className="text-base leading-8 text-[hsl(var(--muted-foreground))]">
+              <p className="t-body text-[hsl(var(--muted-foreground))]">
                 He came to construction sideways. His first business was
                 gourmet catering, and he still talks about what it taught him. Something
                 made to fit one family is not the same as something made to be sold.
               </p>
-              <p className="text-base leading-8 text-[hsl(var(--muted-foreground))]">
-                In 1995 he built his first building, in Santoshpur, and named it
+              <p className="t-body text-[hsl(var(--muted-foreground))]">
+                He founded Ashima Engineering in 1993. Two years later he
+                finished his first building, in Santoshpur, and named it
                 Prarthana after his daughter. The company already carried his
                 mother&rsquo;s name. That is still how it works here.
               </p>
-              <p className="text-base leading-8 text-[hsl(var(--muted-foreground))]">
+              <p className="t-body text-[hsl(var(--muted-foreground))]">
                 Since then Ashima has delivered more than sixty residential projects
                 across South Kolkata. It has worked as a subcontractor to larger
                 groups including L&amp;T, and taken contracts for
@@ -58,7 +59,7 @@ export default function Founder() {
                 Bicco Lawrie. He will tell you the discipline learned on that work
                 is what he brings back to a twelve-flat building in Garfa.
               </p>
-              <p className="font-display text-2xl italic leading-snug text-[hsl(var(--accent))]">
+              <p className="d-3 italic text-[hsl(var(--accent))]">
                 He is on site most mornings. He answers his own phone.
               </p>
             </div>
@@ -83,12 +84,12 @@ export default function Founder() {
           <div />
           <Reveal>
             <blockquote className="max-w-3xl">
-              <span className="font-display text-6xl italic leading-none text-[hsl(var(--secondary))]">&ldquo;</span>
-              <p className="mt-2 font-display text-[clamp(2rem,3.6vw,3.4rem)] leading-[1.06] tracking-[-.02em]">
+              <span className="d-1 italic text-[hsl(var(--secondary))]">&ldquo;</span>
+              <p className="mt-2 d-2 leading-[1.06]">
                 A building is honest or it isn&rsquo;t, and you can only tell by looking at
                 the parts nobody photographs.
               </p>
-              <cite className="mt-7 block font-ui text-[10px] uppercase not-italic tracking-[0.17em] text-[hsl(var(--card))]/55">
+              <cite className="mt-7 block u-label not-italic text-[hsl(var(--card))]/58">
                 Draft, written for review
               </cite>
             </blockquote>
@@ -105,19 +106,19 @@ export default function Founder() {
       <Section eyebrow="03 / Reaching him" tone="card">
         <div className="mt-10 grid gap-12 lg:grid-cols-[1fr_1fr] lg:gap-20">
           <Reveal>
-            <DisplayHeading className="text-[clamp(2.4rem,4.6vw,4.4rem)] text-[hsl(var(--primary))]"
+            <DisplayHeading className="d-1 text-[hsl(var(--primary))]"
                             em="takes calls">
               If he
             </DisplayHeading>
-            <p className="mt-8 max-w-md text-base leading-8 text-[hsl(var(--muted-foreground))]">
+            <p className="mt-8 max-w-md t-body text-[hsl(var(--muted-foreground))]">
               The office number reaches him during working hours.
             </p>
             <a href={telHref}
-               className="mt-9 inline-flex items-center gap-3 bg-[hsl(var(--primary))] px-6 py-4 font-ui text-[10px] uppercase tracking-[0.17em] text-[hsl(var(--card))] transition-transform hover:-translate-y-1"
+               className="mt-9 inline-flex items-center gap-3 bg-[hsl(var(--primary))] px-6 py-4 u-label text-[hsl(var(--card))] transition-transform hover:-translate-y-1"
                data-testid="link-founder-phone">
               <Phone size={14} /> {NAP.phone} <ArrowUpRight size={14} />
             </a>
-            <p className="mt-5 font-ui text-[10px] uppercase tracking-[0.14em] text-[hsl(var(--muted-foreground))]">
+            <p className="mt-5 u-label text-[hsl(var(--muted-foreground))]">
               {NAP.hours}
             </p>
           </Reveal>

@@ -26,6 +26,8 @@ const rera = css.match(/\.rera\s*\{[^}]*\}/s)?.[0] ?? '';
 t('.rera exists in ashima.css', Boolean(rera));
 t('.rera size is derived from --rera-title', /calc\(\s*var\(--rera-title\)\s*\/\s*3\s*\)/.test(rera));
 t('.rera keeps a legibility floor', /max\(/.test(rera));
+t('.rera floor names a property that is actually defined',
+  /var\(--rera-floor\)/.test(rera) && /--rera-floor:\s*[\d.]+/.test(css));
 // Only the strip itself matters here. `.rera-pop` is the explainer popover,
 // which is supposed to start closed — so match `.rera` only when it is not
 // followed by a name character or hyphen.
@@ -112,9 +114,12 @@ if (!fs.existsSync('dist')) {
       const style = await strip.evaluate((el) => {
         const cs = getComputedStyle(el);
         const title = getComputedStyle(document.querySelector('h1'));
-        // Resolve the --step--2 floor to pixels the same way the browser does.
+        // Resolve the legibility floor to pixels the same way the browser does.
+        // This must name the same custom property the .rera rule uses; if it
+        // names a property that does not exist the probe silently reports the
+        // inherited size and the check stops meaning anything.
         const probe = document.createElement('span');
-        probe.style.cssText = 'position:absolute;visibility:hidden;font-size:var(--step--2)';
+        probe.style.cssText = 'position:absolute;visibility:hidden;font-size:var(--rera-floor)';
         document.body.appendChild(probe);
         const floor = parseFloat(getComputedStyle(probe).fontSize);
         probe.remove();

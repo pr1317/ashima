@@ -18,7 +18,7 @@ const EYEBROWS: Record<Tone, string> = {
   card: 'text-[hsl(var(--accent))]',
   dark: 'text-[hsl(var(--secondary))]',
   gold: 'text-[hsl(var(--primary))]',
-  terracotta: 'text-[hsl(var(--card))]/80',
+  terracotta: 'text-[hsl(var(--card))]/85',
 };
 
 const RULES: Record<Tone, string> = {
@@ -50,7 +50,7 @@ export function Section({
       <div className="mx-auto w-full max-w-[1380px] px-6 lg:px-12">
         {eyebrow && (
           <Reveal>
-            <div className={`font-ui text-[10px] uppercase tracking-[0.2em] ${EYEBROWS[tone]}`}>
+            <div className={`u-eyebrow ${EYEBROWS[tone]}`}>
               <span className={`mb-4 block h-px w-12 ${RULES[tone]}`} />
               {eyebrow}
             </div>
@@ -71,7 +71,7 @@ export function DisplayHeading({
   className?: string; as?: 'h1' | 'h2' | 'h3';
 }) {
   return (
-    <Tag className={`font-display leading-[.88] tracking-[-.04em] ${className}`}>
+    <Tag className={`font-display ${className}`}>
       {children}
       {em && <><br /><em>{em}</em></>}
       {after && <><br />{after}</>}
