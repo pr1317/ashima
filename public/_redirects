@@ -1,0 +1,3 @@
+# Client-side routing: every path that is not a real file serves the app shell.
+# The 200 (rather than 301) is what keeps /projects/sraboni-court a real URL.
+/*  /index.html  200

@@ -1,0 +1,252 @@
+/* ============================================================================
+   Ashima Engineering — the small CSS layer.
+
+   The look is carried by Tailwind utilities in the components, in the idiom
+   the app was designed in: Cormorant Garamond display type at large sizes,
+   Karla in wide-tracked uppercase for interface text, deep shutter green and
+   brass, alternating light and dark grounds. What lives here is only what a
+   utility cannot express — the WBRERA size rule, form fields, and a handful
+   of repeated blocks.
+
+   The one exception is Ashima Sans, which is loaded for the logo wordmark
+   alone. It is the face the mark is drawn to, and the licence file must
+   travel with the woff2 files in /public/fonts.
+   ========================================================================= */
+
+@font-face {
+  font-family: "Ashima Sans";
+  src: url("/fonts/AshimaSans-500.woff2") format("woff2");
+  font-weight: 500; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: "Ashima Sans";
+  src: url("/fonts/AshimaSans-400.woff2") format("woff2");
+  font-weight: 400; font-style: normal; font-display: swap;
+}
+
+:root {
+  /* The floor under the WBRERA strip, so it stays legible when a heading is
+     small. See the size rule below. */
+  --rera-floor: 0.78rem;
+  /* The sizes .font-display headings render at, exposed so the WBRERA strip
+     can be sized from the same value. See src/components/rera-strip.tsx. */
+  --card-title-size: 2.25rem;                        /* project card, text-4xl */
+  --page-title-size: clamp(3rem, 6.4vw, 6.4rem);     /* inner-page hero <h1> */
+}
+
+/* The logo wordmark only. Everything else is Karla or Cormorant. */
+.logo-word { font-family: "Ashima Sans", "Karla", system-ui, sans-serif; letter-spacing: 0.04em; }
+
+/* ============================================================================
+   WBRERA COMPLIANCE STRIP — LEGALLY REQUIRED. DO NOT REMOVE OR HIDE.
+   Section 11(2), Real Estate (Regulation and Development) Act 2016, with
+   WBRERA Order No. 492-RERA/L-01/2023. See src/components/rera-strip.tsx.
+
+   The size is one third of the project-name size in the same context, floored
+   for legibility, so it follows the type scale automatically. It is never
+   hidden at a breakpoint, never faded, never rotated, never behind a hover.
+   ========================================================================= */
+.rera-wrap { position: relative; z-index: 2; }
+
+.rera {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  margin: 0;
+  padding: 0.62rem 0.8rem;
+  border-left: 3px solid hsl(var(--secondary));
+  background: hsl(var(--primary) / 0.06);
+  color: hsl(var(--primary));
+  font-size: max(var(--rera-floor), calc(var(--rera-title) / 3));
+  line-height: 1.35;
+  opacity: 1 !important;
+}
+/* On a dark ground the strip inverts. The backing is near-opaque, not a tint:
+   the strip often sits over a photograph, and the number has to be plainly
+   legible against whatever is behind it. */
+.on-dark .rera {
+  background: hsl(154 28% 9% / 0.94);
+  border-left-color: hsl(var(--secondary));
+  color: hsl(var(--card));
+}
+.rera-label {
+  font-family: var(--app-font-sans);
+  font-size: 0.62em;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: hsl(var(--primary) / 0.62);
+}
+.on-dark .rera-label { color: hsl(var(--secondary)); }
+.rera-no {
+  font-family: var(--app-font-sans);
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  font-variant-numeric: tabular-nums;
+  /* A registration number is one long unbroken token. Let it wrap rather than
+     overflow — it may never be truncated or scaled down to fit. */
+  overflow-wrap: anywhere;
+}
+.rera a {
+  font-family: var(--app-font-sans);
+  font-size: 0.72em;
+  color: hsl(var(--primary));
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+.on-dark .rera a { color: hsl(var(--card)); }
+.rera a:hover { color: hsl(var(--accent)); }
+.on-dark .rera a:hover { color: hsl(var(--secondary)); }
+.rera.unverified { border-left-color: hsl(var(--accent)); }
+.rera-warn {
+  margin-top: 0.3rem;
+  font-family: var(--app-font-sans);
+  font-size: 0.68em;
+  font-weight: 700;
+  text-transform: none;
+  color: hsl(var(--accent));
+}
+.on-dark .rera-warn { color: hsl(var(--secondary)); }
+
+.rera-explainer {
+  margin-top: 0.55rem;
+  padding: 0;
+  border: 0;
+  border-bottom: 1px solid currentColor;
+  background: none;
+  cursor: pointer;
+  font-family: var(--app-font-sans);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: hsl(var(--primary));
+}
+.on-dark .rera-explainer { color: hsl(var(--secondary)); }
+.rera-pop {
+  position: absolute;
+  z-index: 30;
+  top: calc(100% + 0.6rem);
+  left: 0;
+  width: min(26rem, calc(100vw - 2.5rem));
+  padding: 1.15rem 1.25rem;
+  border: 1px solid hsl(var(--primary));
+  background: hsl(var(--card));
+  box-shadow: 0 22px 50px hsl(var(--primary) / 0.24);
+}
+.rera-pop p {
+  margin-top: 0.8rem;
+  font-size: 0.82rem;
+  line-height: 1.65;
+  color: hsl(var(--muted-foreground));
+}
+.rera-pop p:first-child { margin-top: 0; }
+.rera-pop a { color: hsl(var(--accent)); text-decoration: underline; text-underline-offset: 3px; }
+
+/* ------------------------------------------------------------------ forms -- */
+
+.field { display: grid; gap: 0.5rem; }
+.field label {
+  font-family: var(--app-font-sans);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: hsl(var(--muted-foreground));
+}
+.field input,
+.field select,
+.field textarea {
+  width: 100%;
+  padding: 0.75rem 0 0.7rem;
+  border: 0;
+  border-bottom: 1px solid hsl(var(--primary) / 0.28);
+  border-radius: 0;
+  background: transparent;
+  font-family: var(--app-font-sans);
+  font-size: 1rem;
+  color: hsl(var(--foreground));
+  transition: border-color 0.25s ease;
+}
+.field textarea { resize: vertical; min-height: 4.5rem; }
+.field input::placeholder, .field textarea::placeholder { color: hsl(var(--muted-foreground) / 0.55); }
+.field input:focus, .field select:focus, .field textarea:focus {
+  outline: none;
+  border-bottom-color: hsl(var(--accent));
+}
+.field select option { color: hsl(var(--foreground)); }
+
+.on-dark .field label { color: hsl(var(--card) / 0.66); }
+.on-dark .field input,
+.on-dark .field select,
+.on-dark .field textarea {
+  border-bottom-color: hsl(var(--card) / 0.3);
+  color: hsl(var(--card));
+}
+.on-dark .field input::placeholder, .on-dark .field textarea::placeholder { color: hsl(var(--card) / 0.32); }
+.on-dark .field input:focus, .on-dark .field select:focus, .on-dark .field textarea:focus {
+  border-bottom-color: hsl(var(--secondary));
+}
+.on-dark .field select option { color: hsl(var(--primary)); }
+
+.hp { position: absolute; left: -9999px; }
+
+/* ------------------------------------------------------- editorial notes -- */
+
+/* The passages still needing a decision from the business before launch. */
+.gap-note {
+  margin-top: 1.5rem;
+  max-width: 46rem;
+  padding: 0.9rem 1.1rem;
+  border-left: 3px solid hsl(var(--accent));
+  background: hsl(var(--accent) / 0.09);
+  font-size: 0.84rem;
+  line-height: 1.65;
+  color: hsl(var(--foreground) / 0.86);
+}
+.on-dark .gap-note {
+  background: hsl(var(--accent) / 0.26);
+  border-left-color: hsl(var(--secondary));
+  color: hsl(var(--card) / 0.92);
+}
+.gap-note strong { font-weight: 700; }
+
+/* ---------------------------------------------------------------- tables -- */
+
+.dtable { width: 100%; border-collapse: collapse; }
+.dtable th, .dtable td {
+  padding: 0.95rem 1.2rem 0.95rem 0;
+  text-align: left;
+  vertical-align: top;
+  font-size: 0.86rem;
+  line-height: 1.6;
+  border-bottom: 1px solid hsl(var(--primary) / 0.14);
+}
+.dtable thead th {
+  font-family: var(--app-font-sans);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: hsl(var(--accent));
+  border-bottom-color: hsl(var(--primary) / 0.3);
+}
+.dtable tbody th { width: 13rem; font-weight: 400; color: hsl(var(--muted-foreground)); }
+.dtable td { color: hsl(var(--muted-foreground)); }
+.dtable .orgcell { width: auto; color: hsl(var(--primary)); font-weight: 700; }
+
+.on-dark .dtable th, .on-dark .dtable td { border-bottom-color: hsl(var(--card) / 0.18); color: hsl(var(--card) / 0.76); }
+.on-dark .dtable thead th { color: hsl(var(--secondary)); border-bottom-color: hsl(var(--card) / 0.3); }
+.on-dark .dtable tbody th { color: hsl(var(--card) / 0.6); }
+.on-dark .dtable .orgcell { color: hsl(var(--card)); }
+
+/* ----------------------------------------------------------------- prose -- */
+
+.prose-ashima p { margin-top: 1.15rem; max-width: 62ch; font-size: 1rem; line-height: 1.8; color: hsl(var(--muted-foreground)); }
+.prose-ashima p:first-child { margin-top: 0; }
+
+/* --------------------------------------------------------------- motion -- */
+
+@media (prefers-reduced-motion: reduce) {
+  .rera-explainer, .field input, .field select, .field textarea { transition: none; }
+}
