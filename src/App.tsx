@@ -1,6 +1,7 @@
 import { useEffect, type ReactNode } from 'react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { Route, Switch, useLocation, Router as WouterRouter } from 'wouter';
+import { useHashLocation } from 'wouter/use-hash-location';
 import { ErrorBoundary } from '@/components/error-boundary';
 import { Toaster } from '@/components/ui/toaster';
 import { TooltipProvider } from '@/components/ui/tooltip';
@@ -22,6 +23,13 @@ import ThankYou from '@/pages/thank-you';
 import NotFound from '@/pages/not-found';
 
 const queryClient = new QueryClient();
+
+/* Normally the app owns real paths, and public/_redirects serves the shell for
+ * any of them. The standalone single-file preview is opened from an arbitrary
+ * path with no server to do that, so it routes on the hash instead. */
+const routerProps = import.meta.env.VITE_HASH_ROUTER === '1'
+  ? { hook: useHashLocation }
+  : { base: import.meta.env.BASE_URL.replace(/\/$/, '') };
 
 /* Schema.org. The name, address and phone here must stay identical to the
    Google Business Profile — local search treats any variation as a second,
@@ -103,7 +111,7 @@ function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <TooltipProvider>
-        <WouterRouter base={import.meta.env.BASE_URL.replace(/\/$/, '')}>
+        <WouterRouter {...routerProps}>
           <OrganisationSchema />
           <ScrollToTop />
           <div className="paper-grain">

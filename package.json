@@ -12,7 +12,8 @@
     "typecheck": "tsc -p tsconfig.json --noEmit",
     "content": "node scripts/gen-content.mjs",
     "check:rera": "node scripts/rera-guard.mjs",
-    "test": "node scripts/test-rera.mjs"
+    "test": "node scripts/test-rera.mjs",
+    "standalone": "cross-env VITE_HASH_ROUTER=1 vite build --config vite.config.ts && node scripts/standalone.mjs"
   },
   "devDependencies": {
     "@hookform/resolvers": "^3.10.0",
@@ -70,6 +71,7 @@
     "react-icons": "^5.4.0",
     "react-resizable-panels": "^2.1.7",
     "recharts": "^2.15.2",
+    "sharp": "^0.35.4",
     "sonner": "^2.0.7",
     "tailwind-merge": "^3.3.1",
     "tailwindcss": "^4.1.14",
