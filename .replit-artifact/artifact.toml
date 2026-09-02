@@ -1,0 +1,28 @@
+kind = "web"
+previewPath = "/"
+title = "Ashima Engineering"
+description = "A cinematic, responsive company website for Ashima Engineering, a South Kolkata residential developer, with immersive project storytelling, enquiry capture, and a polished motion-led experience."
+version = "1.0.0"
+id = "artifacts/ashima-engineering"
+router = "path"
+
+[[services]]
+name = "web"
+paths = [ "/" ]
+localPort = 25818
+
+[services.development]
+run = "pnpm --filter @workspace/ashima-engineering run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/ashima-engineering", "run", "build" ]
+serve = "static"
+publicDir = "artifacts/ashima-engineering/dist/public"
+
+[[services.production.rewrites]]
+from = "/*"
+to = "/index.html"
+
+[services.env]
+PORT = "25818"
+BASE_PATH = "/"
