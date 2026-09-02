@@ -1,0 +1,22 @@
+[build]
+  command = "npm run build"
+  publish = "dist"
+
+[build.environment]
+  NODE_VERSION = "20"
+
+# The launch build. Point Netlify's production context at this once every live
+# project carries a verified WBRERA number — scripts/rera-guard.mjs refuses to
+# run until they do.
+#   [context.production]
+#     command = "npm run build:launch"
+
+[[headers]]
+  for = "/fonts/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"

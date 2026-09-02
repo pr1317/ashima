@@ -1,0 +1,4 @@
+{
+  "enforce": false,
+  "_comment": "Set enforce to true once the real WBRERA registration numbers are in the project files. While it is false the site still displays every strip and still marks unverified numbers in review builds, but no build will fail over a missing or unverified number. Turning it back on switches two things on at once, the schema check in src/content.config.ts and the launch guard in scripts/rera-guard.mjs. Nothing else needs changing."
+}

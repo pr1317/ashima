@@ -1,0 +1,21 @@
+---
+name: Rituparna
+locality: Sonarpur
+status: completed
+yearCompleted: 2019
+totalUnits: 14
+floors: 4
+unitTypes: ["2 BHK", "3 BHK"]
+copyIsDraft: true
+images:
+  - src: /images/projects/record-e.jpg
+    alt: "Street elevation of a mid-rise residential building with shopfronts at ground level. Stand-in photograph for Rituparna in Sonarpur."
+    standIn: true
+summary: "14 flats in Sonarpur, handed over in 2019."
+---
+
+Sample entry, generated so the record page could be laid out and reviewed.
+Replace the details above with the real figures for this project, or delete
+the file. Rituparna is standing in for one of the buildings Ashima Engineering
+has finished in Sonarpur. The name, the year and the number of flats are
+all invented.
