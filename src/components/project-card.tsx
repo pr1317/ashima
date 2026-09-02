@@ -18,7 +18,7 @@ export function ProjectCard({
   const photo = p.images[0];
 
   const border = onDark ? 'border-[hsl(var(--card))]/20' : 'border-[hsl(var(--primary))]/15';
-  const muted = onDark ? 'text-[hsl(var(--card))]/60' : 'text-[hsl(var(--muted-foreground))]';
+  const muted = onDark ? 'text-[hsl(var(--card))]/72' : 'text-[hsl(var(--muted-foreground))]';
   const gold = onDark ? 'text-[hsl(var(--secondary))]' : 'text-[hsl(var(--accent))]';
 
   return (
@@ -35,13 +35,13 @@ export function ProjectCard({
              building delivered — it gets a plaster plate carrying its own
              record, not an empty grey box. */
           <div className="flex h-full w-full items-center justify-center bg-[repeating-linear-gradient(135deg,hsl(var(--primary)/.04)_0_2px,transparent_2px_9px)] px-8 text-center">
-            <span className="max-w-[26ch] font-display text-xl italic leading-snug text-[hsl(var(--muted-foreground))]">
+            <span className="max-w-[26ch] d-4 italic text-[hsl(var(--muted-foreground))]">
               {p.name}, {p.locality}{p.yearCompleted ? `, ${p.yearCompleted}` : ''}. No photograph on file.
             </span>
           </div>
         )}
         <div className="absolute inset-0 bg-gradient-to-t from-[hsl(var(--primary))]/72 via-transparent to-transparent" />
-        <span className={`absolute left-5 top-5 flex items-center gap-2 px-3 py-2 font-ui text-[9px] uppercase tracking-[0.13em] ${
+        <span className={`absolute left-5 top-5 flex items-center gap-2 px-3 py-2 u-micro ${
                  live ? 'bg-[hsl(var(--primary))] text-[hsl(var(--secondary))]'
                       : 'bg-[hsl(var(--card))] text-[hsl(var(--primary))]'}`}
               data-testid={`status-project-${p.id}`}>
@@ -54,13 +54,13 @@ export function ProjectCard({
 
       <div className={`flex flex-col justify-between gap-5 border-b ${border} py-6 sm:flex-row sm:items-start`}>
         <div>
-          <h3 className="font-display text-4xl tracking-tight">
+          <h3 className="d-2">
             <Link href={`/projects/${p.id}`} className="card-link"
                   data-testid={`link-project-${p.id}`}>
               {p.name}
             </Link>
           </h3>
-          <div className={`mt-2 flex items-center gap-2 font-ui text-[10px] uppercase tracking-[0.15em] ${gold}`}>
+          <div className={`mt-2 flex items-center gap-2 u-label ${gold}`}>
             <MapPin size={12} />{p.locality}
           </div>
         </div>
@@ -71,11 +71,11 @@ export function ProjectCard({
           <ReraStrip reraNumber={p.reraNumber} verified={p.reraVerified}
                      titleSize="var(--card-title-size)" className="sm:max-w-[17rem]" />
         ) : (
-          <p className={`max-w-xs text-sm leading-6 ${muted}`}>{p.summary}</p>
+          <p className={`max-w-xs t-sm ${muted}`}>{p.summary}</p>
         )}
       </div>
 
-      <p className={`mt-4 flex flex-wrap gap-x-5 gap-y-1 font-ui text-[10px] uppercase tracking-[0.13em] ${muted}`}>
+      <p className={`mt-4 flex flex-wrap gap-x-5 gap-y-1 u-label ${muted}`}>
         {p.unitTypes.length > 0 && <span>{p.unitTypes.join(' and ')}</span>}
         {p.carpetAreaMin && p.carpetAreaMax && (
           <span>{p.carpetAreaMin}–{p.carpetAreaMax} sq ft carpet</span>

@@ -54,18 +54,18 @@ export default function LandOwners() {
                 heading={<>Own land here?<br /><em>Let&rsquo;s talk about</em><br />what it could become.</>}
                 marker="Joint-venture development">
         <div className="mt-9 max-w-xl">
-          <p className="text-sm leading-7 text-[hsl(var(--card))]/85">
+          <p className="t-sm text-[hsl(var(--card))]/85">
             A joint venture means you keep your land and we build on it. You are
             paid in flats in the finished building rather than a lump sum, and
             the split is agreed in writing before anything is signed.
           </p>
           <div className="mt-8 flex flex-wrap gap-3">
             <a href={telHref}
-               className="flex items-center gap-2 bg-[hsl(var(--secondary))] px-5 py-3.5 font-ui text-[10px] uppercase tracking-[0.16em] text-[hsl(var(--primary))] transition-transform hover:-translate-y-1">
+               className="flex items-center gap-2 bg-[hsl(var(--secondary))] px-5 py-3.5 u-label text-[hsl(var(--primary))] transition-transform hover:-translate-y-1">
               <Phone size={14} /> Call {NAP.phone}
             </a>
             <a href={whatsappHref(WHATSAPP)} rel="noopener" target="_blank"
-               className="flex items-center gap-2 border border-[hsl(var(--card))]/35 px-5 py-3.5 font-ui text-[10px] uppercase tracking-[0.16em] text-[hsl(var(--card))] transition-colors hover:border-[hsl(var(--secondary))] hover:text-[hsl(var(--secondary))]">
+               className="flex items-center gap-2 border border-[hsl(var(--card))]/35 px-5 py-3.5 u-label text-[hsl(var(--card))] transition-colors hover:border-[hsl(var(--secondary))] hover:text-[hsl(var(--secondary))]">
               WhatsApp <ArrowUpRight size={14} />
             </a>
           </div>
@@ -77,11 +77,11 @@ export default function LandOwners() {
         <div className="mt-10 grid gap-12 lg:grid-cols-[1fr_1.6fr] lg:gap-20">
           <div />
           <Reveal delay={1}>
-            <p className="max-w-2xl text-xl leading-relaxed text-[hsl(var(--primary))] lg:text-2xl lg:leading-relaxed">
+            <p className="max-w-2xl t-lead text-[hsl(var(--primary))]">
               Most of what we have built since 1995 started as somebody&rsquo;s old house
               on a plot in one of these localities.
             </p>
-            <p className="mt-6 max-w-2xl text-base leading-8 text-[hsl(var(--muted-foreground))]">
+            <p className="mt-6 max-w-2xl t-body text-[hsl(var(--muted-foreground))]">
               If you have been approached by developers before and it did not go
               well, that is a common enough story around here. It is worth one
               conversation.
@@ -95,10 +95,10 @@ export default function LandOwners() {
         <div className="mt-2 grid gap-9 lg:grid-cols-[.8fr_1.8fr]">
           <div />
           <Reveal>
-            <DisplayHeading className="max-w-3xl text-[clamp(2.6rem,5.2vw,5.4rem)]" em="a sequence.">
+            <DisplayHeading className="max-w-3xl d-1" em="a sequence.">
               It genuinely is
             </DisplayHeading>
-            <p className="mt-8 max-w-xl text-base leading-7 text-[hsl(var(--card))]/85">
+            <p className="mt-8 max-w-xl t-body text-[hsl(var(--card))]/85">
               This is the order it happens in.
             </p>
           </Reveal>
@@ -108,9 +108,9 @@ export default function LandOwners() {
           {steps.map(([n, t, d], i) => (
             <Reveal key={n} delay={(i % 4) as 0 | 1 | 2 | 3}>
               <div className="grid gap-4 border-b border-[hsl(var(--card))]/20 py-6 md:grid-cols-[70px_1fr_1.15fr] md:items-start md:gap-8">
-                <span className="font-display text-3xl italic text-[hsl(var(--secondary))]">{n}</span>
-                <h3 className="max-w-xs font-display text-2xl leading-tight">{t}</h3>
-                <p className="max-w-lg text-sm leading-7 text-[hsl(var(--card))]/68">{d}</p>
+                <span className="d-3 italic text-[hsl(var(--secondary))]">{n}</span>
+                <h3 className="max-w-xs d-3">{t}</h3>
+                <p className="max-w-lg t-sm text-[hsl(var(--card))]/72">{d}</p>
               </div>
             </Reveal>
           ))}
@@ -127,10 +127,10 @@ export default function LandOwners() {
         <div className="mt-2 grid gap-9 lg:grid-cols-[.8fr_1.8fr]">
           <div />
           <Reveal>
-            <DisplayHeading className="max-w-3xl text-[clamp(2.6rem,5.2vw,5.4rem)]" em="all of them checkable.">
+            <DisplayHeading className="max-w-3xl d-1" em="all of them checkable.">
               Four things,
             </DisplayHeading>
-            <p className="mt-8 max-w-xl text-base leading-7 text-[hsl(var(--primary))]/70">
+            <p className="mt-8 max-w-xl t-body text-[hsl(var(--primary))]/70">
               If a developer will not put these in writing, that tells you something.
             </p>
           </Reveal>
@@ -140,8 +140,8 @@ export default function LandOwners() {
           {commitments.map(([t, d], i) => (
             <Reveal key={t} delay={(i % 4) as 0 | 1 | 2 | 3}
                     className="border-b border-[hsl(var(--primary))]/25 py-7">
-              <b className="block font-display text-2xl leading-tight">{t}</b>
-              <span className="mt-3 block text-sm leading-7 text-[hsl(var(--primary))]/70">{d}</span>
+              <b className="block d-3">{t}</b>
+              <span className="mt-3 block t-sm text-[hsl(var(--primary))]/70">{d}</span>
             </Reveal>
           ))}
         </div>
@@ -158,24 +158,24 @@ export default function LandOwners() {
       <Section eyebrow="04 / Why us" tone="card">
         <div className="mt-10 grid gap-14 lg:grid-cols-2 lg:items-center lg:gap-20">
           <Reveal>
-            <DisplayHeading className="text-[clamp(2.6rem,5vw,5rem)] text-[hsl(var(--primary))]"
+            <DisplayHeading className="d-1 text-[hsl(var(--primary))]"
                             em="within a few kilometres.">
               Sixty-odd buildings,
             </DisplayHeading>
-            <p className="mt-9 max-w-lg text-base leading-8 text-[hsl(var(--muted-foreground))]">
+            <p className="mt-9 max-w-lg t-body text-[hsl(var(--muted-foreground))]">
               Thirty years, all of them within a few kilometres of here. We are
               not a group that turned up in Santoshpur last year because the land
               got expensive. The office has been on Aurobindo Road the whole time,
-              and the same person has run it since 1995.
+              and the same person has run it since 1993.
             </p>
-            <p className="mt-5 max-w-lg text-base leading-8 text-[hsl(var(--muted-foreground))]">
+            <p className="mt-5 max-w-lg t-body text-[hsl(var(--muted-foreground))]">
               Past landowners will speak to you. Ask, and we will put you in touch
               with people whose buildings went up ten and twenty years ago, so you
               can hear how it went once the work was finished and everyone had
               moved in.
             </p>
             <Link href="/projects"
-                  className="mt-9 inline-flex items-center gap-3 border-b border-[hsl(var(--primary))]/35 pb-2 font-ui text-[10px] uppercase tracking-[0.18em] text-[hsl(var(--primary))] transition-colors hover:border-[hsl(var(--accent))] hover:text-[hsl(var(--accent))]">
+                  className="mt-9 inline-flex items-center gap-3 border-b border-[hsl(var(--primary))]/35 pb-2 u-label text-[hsl(var(--primary))] transition-colors hover:border-[hsl(var(--accent))] hover:text-[hsl(var(--accent))]">
               See every building since 1995 <ArrowUpRight size={15} />
             </Link>
           </Reveal>
@@ -194,7 +194,7 @@ export default function LandOwners() {
         <div className="mt-2 grid gap-9 lg:grid-cols-[.8fr_1.8fr]">
           <div />
           <Reveal>
-            <DisplayHeading className="max-w-3xl text-[clamp(2.4rem,4.8vw,4.8rem)] text-[hsl(var(--primary))]"
+            <DisplayHeading className="max-w-3xl d-1 text-[hsl(var(--primary))]"
                             em="Not for a first conversation.">
               Eventually.
             </DisplayHeading>
@@ -205,33 +205,33 @@ export default function LandOwners() {
           {documents.map(([t, d], i) => (
             <Reveal key={t} delay={(i % 4) as 0 | 1 | 2 | 3}>
               <div className="grid gap-3 border-b border-[hsl(var(--primary))]/15 py-5 md:grid-cols-[16rem_1fr] md:gap-10">
-                <h3 className="font-display text-2xl leading-none text-[hsl(var(--primary))]">{t}</h3>
-                <p className="max-w-2xl text-sm leading-7 text-[hsl(var(--muted-foreground))]">{d}</p>
+                <h3 className="d-3 text-[hsl(var(--primary))]">{t}</h3>
+                <p className="max-w-2xl t-sm text-[hsl(var(--muted-foreground))]">{d}</p>
               </div>
             </Reveal>
           ))}
         </div>
 
         <Reveal className="on-dark mt-14 bg-[hsl(var(--primary))] p-9 text-[hsl(var(--card))] lg:p-12">
-          <DisplayHeading as="h2" className="max-w-2xl text-[clamp(2rem,3.6vw,3.4rem)]"
+          <DisplayHeading as="h2" className="max-w-2xl d-2"
                           em="needs none of it.">
             A first conversation
           </DisplayHeading>
-          <p className="mt-7 max-w-xl text-base leading-8 text-[hsl(var(--card))]/85">
+          <p className="mt-7 max-w-xl t-body text-[hsl(var(--card))]/85">
             Call and describe the plot. If it is not worth doing we will say so on
             the phone rather than send somebody to look at it.
           </p>
           <div className="mt-9 flex flex-wrap gap-3">
             <a href={telHref}
-               className="flex items-center gap-2 bg-[hsl(var(--secondary))] px-5 py-3.5 font-ui text-[10px] uppercase tracking-[0.16em] text-[hsl(var(--primary))] transition-transform hover:-translate-y-1">
+               className="flex items-center gap-2 bg-[hsl(var(--secondary))] px-5 py-3.5 u-label text-[hsl(var(--primary))] transition-transform hover:-translate-y-1">
               <Phone size={14} /> {NAP.phone}
             </a>
             <a href={whatsappHref(WHATSAPP)} rel="noopener" target="_blank"
-               className="flex items-center gap-2 border border-[hsl(var(--card))]/35 px-5 py-3.5 font-ui text-[10px] uppercase tracking-[0.16em] text-[hsl(var(--card))] transition-colors hover:border-[hsl(var(--secondary))] hover:text-[hsl(var(--secondary))]">
+               className="flex items-center gap-2 border border-[hsl(var(--card))]/35 px-5 py-3.5 u-label text-[hsl(var(--card))] transition-colors hover:border-[hsl(var(--secondary))] hover:text-[hsl(var(--secondary))]">
               WhatsApp <ArrowUpRight size={14} />
             </a>
           </div>
-          <p className="mt-6 font-ui text-[10px] uppercase tracking-[0.14em] text-[hsl(var(--card))]/50">
+          <p className="mt-6 u-label text-[hsl(var(--card))]/58">
             {NAP.hours}
           </p>
         </Reveal>

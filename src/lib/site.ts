@@ -14,8 +14,15 @@ export const NAP = {
   phoneIsPlaceholder: false,
   email: 'partha.rgc@gmail.com',
   emailIsPlaceholder: false,
-  hours: 'Monday to Saturday, 11am to 8pm. Sundays by appointment.',
-  founded: '1995-05',
+  /** Open every day. Confirmed by the business; must match the Google
+   *  Business Profile, which is what most people see first. */
+  hours: 'Monday to Saturday, 10.30am to 8pm. Sunday, 11am to 5pm.',
+  hoursShort: 'Open every day',
+  /** The firm was founded in 1993. The first building, Prarthana in
+   *  Santoshpur, was handed over in 1995 — which is where the project
+   *  record starts. Do not collapse the two dates into one. */
+  founded: '1993',
+  firstDelivery: '1995',
   lat: 22.4966,
   lng: 88.3897,
 } as const;

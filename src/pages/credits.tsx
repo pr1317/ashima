@@ -13,7 +13,7 @@ export default function Credits() {
 
       <PageHero image="/images/site/pinkhouse.jpg" eyebrow="Attribution"
                 heading={<>Every photograph<br /><em>is a stand-in.</em></>}>
-        <p className="mt-9 max-w-lg text-sm leading-7 text-[hsl(var(--card))]/85">
+        <p className="mt-9 max-w-lg t-sm text-[hsl(var(--card))]/85">
           None of them shows a building by Ashima Engineering. They are freely
           licensed photographs of Kolkata buildings, used so that the layout can
           be judged before the real photography exists.
@@ -24,7 +24,7 @@ export default function Credits() {
         <div className="mt-10 grid gap-9 lg:grid-cols-[.8fr_1.8fr]">
           <div />
           <Reveal>
-            <p className="max-w-2xl text-base leading-8 text-[hsl(var(--muted-foreground))]">
+            <p className="max-w-2xl t-body text-[hsl(var(--muted-foreground))]">
               Each is credited below under the terms of its licence. When
               Ashima&rsquo;s own photographs replace them, this page goes away.
             </p>

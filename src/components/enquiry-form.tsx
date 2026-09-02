@@ -103,7 +103,7 @@ export function EnquiryForm({
       </div>
 
       <button type="submit" disabled={state === 'sending'}
-              className={`group mt-2 flex w-full items-center justify-between px-5 py-4 font-ui text-[10px] uppercase tracking-[0.18em] transition-transform hover:-translate-y-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[hsl(var(--secondary))] focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:translate-y-0 disabled:opacity-60 ${
+              className={`group mt-2 flex w-full items-center justify-between px-5 py-4 u-label transition-transform hover:-translate-y-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[hsl(var(--secondary))] focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:translate-y-0 disabled:opacity-60 ${
                 onDark
                   ? 'bg-[hsl(var(--secondary))] text-[hsl(var(--primary))] focus-visible:ring-offset-[hsl(var(--primary))]'
                   : 'bg-[hsl(var(--primary))] text-[hsl(var(--card))] focus-visible:ring-offset-[hsl(var(--background))]'}`}
@@ -113,14 +113,14 @@ export function EnquiryForm({
       </button>
 
       {state === 'error' && (
-        <p className={`text-sm font-semibold ${onDark ? 'text-[hsl(var(--secondary))]' : 'text-[hsl(var(--accent))]'}`}
+        <p className={`t-sm font-semibold ${onDark ? 'text-[hsl(var(--secondary))]' : 'text-[hsl(var(--accent))]'}`}
            role="alert" data-testid="text-form-error">
           That did not go through. Please call us instead — the number is in the
           footer of every page.
         </p>
       )}
 
-      <p className={`max-w-sm text-xs leading-6 ${onDark ? 'text-[hsl(var(--card))]/55' : 'text-[hsl(var(--muted-foreground))]'}`}>
+      <p className={`t-fine max-w-sm ${onDark ? 'text-[hsl(var(--card))]/72' : 'text-[hsl(var(--muted-foreground))]'}`}>
         We use what you send here to call you back and nothing else. See the{' '}
         <Link href="/privacy" className="underline underline-offset-2 hover:text-[hsl(var(--accent))]">
           privacy notice

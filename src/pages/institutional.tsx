@@ -8,7 +8,7 @@ import { NAP, telHref } from '@/lib/site';
 
 const capability: [string, string][] = [
   ['Typical project size', 'Residential buildings of eight to twenty-four flats, three to five floors, on plots in South Kolkata.'],
-  ['Scale', 'Two to three concurrent projects. Thirty years of continuous operation since May 1995.'],
+  ['Scale', 'Two to three concurrent projects. Continuous operation since 1993, with the first building handed over in 1995.'],
   ['In house', 'Site supervision, procurement, and day-to-day project management.'],
   ['Subcontracted', 'Specialist trades such as lifts, electrical and plumbing, engaged per project.'],
 ];
@@ -31,7 +31,7 @@ export default function Institutional() {
       <PageHero image="/images/site/formwork.jpg" eyebrow="Institutional"
                 heading={<>Institutional and<br /><em>government work.</em></>}
                 marker="Contracts &amp; tenders">
-        <p className="mt-9 max-w-lg text-sm leading-7 text-[hsl(var(--card))]/85">
+        <p className="mt-9 max-w-lg t-sm text-[hsl(var(--card))]/85">
           Alongside residential development, Ashima Engineering has executed
           contracts and tenders for government and government-associated
           organisations, and has worked as a subcontractor to larger construction
@@ -44,11 +44,11 @@ export default function Institutional() {
         <div className="mt-2 grid gap-9 lg:grid-cols-[.8fr_1.8fr]">
           <div />
           <Reveal>
-            <DisplayHeading className="max-w-3xl text-[clamp(2.6rem,5.2vw,5.4rem)] text-[hsl(var(--primary))]"
+            <DisplayHeading className="max-w-3xl d-1 text-[hsl(var(--primary))]"
                             em="record.">
               Client
             </DisplayHeading>
-            <p className="mt-8 max-w-2xl text-base leading-7 text-[hsl(var(--muted-foreground))]">
+            <p className="mt-8 max-w-2xl t-body text-[hsl(var(--muted-foreground))]">
               The work below is listed as executed and completed. We are happy to
               provide documentation on request.
             </p>
@@ -93,7 +93,7 @@ export default function Institutional() {
         <div className="mt-2 grid gap-9 lg:grid-cols-[.8fr_1.8fr]">
           <div />
           <Reveal>
-            <DisplayHeading className="max-w-3xl text-[clamp(2.6rem,5.2vw,5.4rem)]" em="we bring.">
+            <DisplayHeading className="max-w-3xl d-1" em="we bring.">
               What
             </DisplayHeading>
           </Reveal>
@@ -103,8 +103,8 @@ export default function Institutional() {
           {capability.map(([t, d], i) => (
             <Reveal key={t} delay={(i % 4) as 0 | 1 | 2 | 3}>
               <div className="grid gap-4 border-b border-[hsl(var(--primary))]/25 py-6 md:grid-cols-[16rem_1fr] md:gap-10">
-                <h3 className="font-display text-2xl leading-none">{t}</h3>
-                <p className="max-w-2xl text-base leading-7 text-[hsl(var(--primary))]/70">{d}</p>
+                <h3 className="d-3">{t}</h3>
+                <p className="max-w-2xl t-body text-[hsl(var(--primary))]/70">{d}</p>
               </div>
             </Reveal>
           ))}
@@ -122,7 +122,7 @@ export default function Institutional() {
         <div className="mt-2 grid gap-9 lg:grid-cols-[.8fr_1.8fr]">
           <div />
           <Reveal>
-            <DisplayHeading className="max-w-3xl text-[clamp(2.6rem,5.2vw,5.4rem)]" em="the firm is real.">
+            <DisplayHeading className="max-w-3xl d-1" em="the firm is real.">
               The numbers that prove
             </DisplayHeading>
           </Reveal>
@@ -148,26 +148,26 @@ export default function Institutional() {
       <Section eyebrow="04 / Tender and procurement" tone="card">
         <div className="mt-10 grid gap-12 lg:grid-cols-2 lg:gap-20">
           <Reveal>
-            <DisplayHeading className="text-[clamp(2.4rem,4.6vw,4.4rem)] text-[hsl(var(--primary))]"
+            <DisplayHeading className="d-1 text-[hsl(var(--primary))]"
                             em="a direct line.">
               A named person,
             </DisplayHeading>
-            <p className="mt-8 max-w-md text-base leading-8 text-[hsl(var(--muted-foreground))]">
+            <p className="mt-8 max-w-md t-body text-[hsl(var(--muted-foreground))]">
               For tender and procurement enquiries — not a general enquiry form.
             </p>
             <a href={telHref}
-               className="mt-9 inline-flex items-center gap-3 bg-[hsl(var(--primary))] px-6 py-4 font-ui text-[10px] uppercase tracking-[0.17em] text-[hsl(var(--card))] transition-transform hover:-translate-y-1"
+               className="mt-9 inline-flex items-center gap-3 bg-[hsl(var(--primary))] px-6 py-4 u-label text-[hsl(var(--card))] transition-transform hover:-translate-y-1"
                data-testid="link-tender-phone">
               <Phone size={14} /> {NAP.phone} <ArrowUpRight size={14} />
             </a>
-            <p className="mt-5 font-ui text-[10px] uppercase tracking-[0.14em] text-[hsl(var(--muted-foreground))]">
+            <p className="mt-5 u-label text-[hsl(var(--muted-foreground))]">
               {NAP.hours}
             </p>
           </Reveal>
           <Reveal delay={1}>
             <div className="flex items-start gap-5 border-l border-[hsl(var(--primary))]/20 pl-7">
               <Building2 size={26} strokeWidth={1.25} className="mt-1 shrink-0 text-[hsl(var(--accent))]" />
-              <p className="text-base leading-8 text-[hsl(var(--muted-foreground))]">
+              <p className="t-body text-[hsl(var(--muted-foreground))]">
                 Contracts for government-associated organisations, including
                 Balmer Lawrie and Bicco Lawrie, and subcontracted civil packages
                 for larger construction groups.

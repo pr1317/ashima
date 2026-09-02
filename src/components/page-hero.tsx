@@ -48,15 +48,27 @@ export function PageHero({
              className={`on-dark relative flex items-end overflow-hidden bg-[hsl(var(--primary))] text-[hsl(var(--card))] ${
                full ? 'min-h-[720px] lg:min-h-[800px]' : 'min-h-[440px] lg:min-h-[520px]'}`}
              data-testid="section-hero">
-      <div className="absolute inset-0 bg-[linear-gradient(90deg,hsl(154_28%_10%/.86)_0%,hsl(154_28%_12%/.62)_43%,hsl(154_28%_12%/.12)_100%),linear-gradient(0deg,hsl(154_28%_10%/.84),transparent_60%)]" />
-      {/* Keeps the nav legible where the photograph runs light. */}
-      <div className="absolute inset-x-0 top-0 h-48 bg-[linear-gradient(180deg,hsl(154_28%_8%/.85),transparent)]" />
-      {/* An inner-page band is short, so its type sits high up where the
-          bottom-up gradient has not reached. This evens the ground out. */}
-      {!full && <div className="absolute inset-0 bg-[hsl(154_28%_10%/.55)]" />}
+      {/* ORDER MATTERS. The photograph goes down first and everything that
+          darkens it goes on top. With the washes above the image they tint the
+          section's own background and the photograph paints straight over
+          them, which is what made cream type unreadable on a pale building. */}
       <div ref={imageRef}
-           className="absolute inset-0 bg-cover bg-center opacity-80 mix-blend-luminosity will-change-transform"
+           className={`absolute inset-0 bg-cover bg-center mix-blend-luminosity will-change-transform ${
+             full ? 'opacity-[.62]' : 'opacity-80'}`}
            style={{ backgroundImage: `url('${image}')` }} aria-hidden="true" />
+
+      <div className="absolute inset-0 bg-[linear-gradient(90deg,hsl(154_28%_10%/.86)_0%,hsl(154_28%_12%/.62)_43%,hsl(154_28%_12%/.12)_100%),linear-gradient(0deg,hsl(154_28%_10%/.84),transparent_60%)]" />
+
+      {/* A flat wash under the type. The horizontal gradient is built for a
+          wide viewport — on a phone the whole band is its dark end, so the
+          photograph shows through at full brightness. Hence a heavier wash on
+          small screens, lighter on large. */}
+      <div className={`absolute inset-0 ${
+        full ? 'bg-[hsl(154_28%_10%/.42)] lg:bg-[hsl(154_28%_10%/.2)]'
+             : 'bg-[hsl(154_28%_10%/.5)] lg:bg-[hsl(154_28%_10%/.34)]'}`} />
+
+      {/* Keeps the nav legible where the photograph runs light. */}
+      <div className="absolute inset-x-0 top-0 h-48 bg-[linear-gradient(180deg,hsl(154_28%_8%/.8),transparent)]" />
 
       <div className={`absolute h-72 w-72 rounded-full border border-[hsl(var(--secondary))]/25 ${
         full ? '-right-20 top-32 lg:right-24 lg:top-40' : '-right-24 top-20 lg:right-16'}`} />
@@ -67,15 +79,15 @@ export function PageHero({
         full ? 'pb-12 pt-48 lg:pb-20' : 'pb-14 pt-40 lg:pb-16'}`}>
         <div className="max-w-3xl">
           <Reveal className="reveal-delay-1">
-            <div className="hero-eyebrow hero-gold mb-7 inline-flex items-center gap-3 font-ui text-[10.5px] uppercase tracking-[0.22em]">
+            <div className="hero-eyebrow hero-gold mb-7 inline-flex items-center gap-3 u-eyebrow">
               <span className="h-px w-10 bg-[hsl(var(--secondary))]" />
               {eyebrow}
             </div>
           </Reveal>
           <Reveal className="reveal-delay-2">
-            <h1 className={`font-display tracking-[-.045em] ${
-              full ? 'text-[clamp(4rem,9vw,8.5rem)] leading-[.83]'
-                   : 'text-[length:var(--page-title-size)] leading-[.86]'}`}>
+            <h1 className={`font-display ${
+              full ? 'd-hero'
+                   : 'text-[length:var(--page-title-size)]'}`}>
               {heading}
             </h1>
           </Reveal>
@@ -84,7 +96,7 @@ export function PageHero({
       </div>
 
       {marker && (
-        <div className="absolute bottom-7 right-6 hidden items-center gap-3 font-ui text-[9px] uppercase tracking-[0.18em] text-[hsl(var(--card))]/55 lg:right-12 lg:flex">
+        <div className="absolute bottom-7 right-6 hidden items-center gap-3 u-micro text-[hsl(var(--card))]/58 lg:right-12 lg:flex">
           <span className="h-px w-14 bg-[hsl(var(--card))]/35" /> {marker}
         </div>
       )}

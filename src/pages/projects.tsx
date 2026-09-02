@@ -37,7 +37,7 @@ export default function Projects() {
       <PageHero image="/images/projects/sraboni-b.jpg" eyebrow="Since 1995"
                 heading={<>A place to<br /><em>put down roots.</em></>}
                 marker="60+ delivered">
-        <p className="mt-9 max-w-md text-sm leading-7 text-[hsl(var(--card))]/85">
+        <p className="mt-9 max-w-md t-sm text-[hsl(var(--card))]/85">
           What is open for booking now, and underneath it every building we have
           finished since 1995.
         </p>
@@ -48,7 +48,7 @@ export default function Projects() {
         <div className="mt-2 grid gap-9 lg:grid-cols-[.8fr_1.8fr]">
           <div />
           <Reveal>
-            <DisplayHeading className="max-w-3xl text-[clamp(2.6rem,5.2vw,5.4rem)] text-[hsl(var(--primary))]"
+            <DisplayHeading className="max-w-3xl d-1 text-[hsl(var(--primary))]"
                             em="booking.">
               Open for
             </DisplayHeading>
@@ -63,12 +63,12 @@ export default function Projects() {
           </div>
         ) : (
           <div className="mt-14 border border-[hsl(var(--primary))]/20 bg-[hsl(var(--card))] p-8">
-            <p className="max-w-lg text-base leading-7 text-[hsl(var(--muted-foreground))]">
+            <p className="max-w-lg t-body text-[hsl(var(--muted-foreground))]">
               No new project is open for booking right now. Tell us what you're
               looking for and we'll call you when the next one opens.
             </p>
             <Link href="/contact#enquire"
-                  className="mt-6 inline-flex items-center gap-2 bg-[hsl(var(--primary))] px-5 py-3.5 font-ui text-[10px] uppercase tracking-[0.16em] text-[hsl(var(--card))]">
+                  className="mt-6 inline-flex items-center gap-2 bg-[hsl(var(--primary))] px-5 py-3.5 u-label text-[hsl(var(--card))]">
               Tell us what you want <ArrowUpRight size={14} />
             </Link>
           </div>
@@ -80,10 +80,10 @@ export default function Projects() {
         <div className="mt-2 grid gap-9 lg:grid-cols-[.8fr_1.8fr]">
           <div />
           <Reveal>
-            <DisplayHeading className="max-w-4xl text-[clamp(2.6rem,5.4vw,5.6rem)]" em="1995 to today.">
+            <DisplayHeading className="max-w-4xl d-1" em="1995 to today.">
               Every project,
             </DisplayHeading>
-            <p className="mt-8 max-w-2xl text-base leading-7 text-[hsl(var(--card))]/85">
+            <p className="mt-8 max-w-2xl t-body text-[hsl(var(--card))]/85">
               Sixty-odd buildings across South Kolkata. We do not have photographs of
               all of them, because the early ones were finished before anyone thought to
               take any. They are on the list regardless.
@@ -91,7 +91,7 @@ export default function Projects() {
           </Reveal>
         </div>
 
-        <div className="mt-12 flex flex-wrap gap-x-10 gap-y-3 border-y border-[hsl(var(--card))]/20 py-5 font-ui text-[10px] uppercase tracking-[0.16em] text-[hsl(var(--secondary))]">
+        <div className="mt-12 flex flex-wrap gap-x-10 gap-y-3 border-y border-[hsl(var(--card))]/20 py-5 u-label text-[hsl(var(--secondary))]">
           <span>{recordTotals.buildings} buildings</span>
           <span>{recordTotals.flats} flats</span>
           <span>{recordTotals.localities} localities</span>
@@ -102,27 +102,27 @@ export default function Projects() {
              aria-label="Filter the record by locality">
           <button type="button" aria-pressed={locality === 'all'}
                   onClick={() => setLocality('all')}
-                  className={`border px-4 py-2.5 font-ui text-[10px] uppercase tracking-[0.14em] transition-colors ${
+                  className={`border px-4 py-2.5 u-label transition-colors ${
                     locality === 'all'
                       ? 'border-[hsl(var(--secondary))] bg-[hsl(var(--secondary))] text-[hsl(var(--primary))]'
-                      : 'border-[hsl(var(--card))]/25 text-[hsl(var(--card))]/70 hover:border-[hsl(var(--secondary))] hover:text-[hsl(var(--secondary))]'}`}
+                      : 'border-[hsl(var(--card))]/25 text-[hsl(var(--card))]/72 hover:border-[hsl(var(--secondary))] hover:text-[hsl(var(--secondary))]'}`}
                   data-testid="button-filter-all">
             All localities
           </button>
           {recordLocalities.map((l) => (
             <button key={l} type="button" aria-pressed={locality === l}
                     onClick={() => setLocality(l)}
-                    className={`border px-4 py-2.5 font-ui text-[10px] uppercase tracking-[0.14em] transition-colors ${
+                    className={`border px-4 py-2.5 u-label transition-colors ${
                       locality === l
                         ? 'border-[hsl(var(--secondary))] bg-[hsl(var(--secondary))] text-[hsl(var(--primary))]'
-                        : 'border-[hsl(var(--card))]/25 text-[hsl(var(--card))]/70 hover:border-[hsl(var(--secondary))] hover:text-[hsl(var(--secondary))]'}`}
+                        : 'border-[hsl(var(--card))]/25 text-[hsl(var(--card))]/72 hover:border-[hsl(var(--secondary))] hover:text-[hsl(var(--secondary))]'}`}
                     data-testid={`button-filter-${l.toLowerCase()}`}>
               {l}
             </button>
           ))}
         </div>
 
-        <p className="mt-5 font-ui text-[10px] uppercase tracking-[0.15em] text-[hsl(var(--card))]/50"
+        <p className="mt-5 u-label text-[hsl(var(--card))]/58"
            aria-live="polite" data-testid="text-record-count">
           {locality === 'all'
             ? `Showing all ${shown} buildings.`
@@ -134,8 +134,8 @@ export default function Projects() {
             <Reveal key={year}>
               <div className="grid gap-4 border-b border-[hsl(var(--card))]/20 py-7 md:grid-cols-[9rem_1fr] md:gap-10">
                 <div>
-                  <p className="font-display text-4xl italic leading-none text-[hsl(var(--secondary))]">{year}</p>
-                  <p className="mt-2 font-ui text-[9px] uppercase tracking-[0.15em] text-[hsl(var(--card))]/45">
+                  <p className="d-2 italic text-[hsl(var(--secondary))]">{year}</p>
+                  <p className="mt-2 u-micro text-[hsl(var(--card))]/58">
                     {projects.length} {projects.length === 1 ? 'building' : 'buildings'}
                   </p>
                 </div>
@@ -143,9 +143,9 @@ export default function Projects() {
                   {projects.map((p) => {
                     const inner = (
                       <>
-                        <span className="font-display text-2xl leading-none text-[hsl(var(--card))]">{p.name}</span>
-                        <span className="font-ui text-[10px] uppercase tracking-[0.14em] text-[hsl(var(--card))]/55">{p.locality}</span>
-                        <span className="text-right font-ui text-[10px] uppercase tracking-[0.14em] text-[hsl(var(--card))]/45">
+                        <span className="d-3 text-[hsl(var(--card))]">{p.name}</span>
+                        <span className="u-label text-[hsl(var(--card))]/58">{p.locality}</span>
+                        <span className="text-right u-label text-[hsl(var(--card))]/58">
                           {p.totalUnits ? `${p.totalUnits} flats` : '—'}
                         </span>
                       </>
