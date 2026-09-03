@@ -16,7 +16,6 @@ const capability: [string, string][] = [
 const credentials: [string, string][] = [
   ['Company registration number', 'To be supplied'],
   ['GST', 'To be supplied'],
-  ['PAN', 'To be supplied, if appropriate to publish'],
   ['Trade licence', 'To be supplied'],
   ['Empanelment', 'To be supplied, if any'],
 ];
@@ -79,12 +78,11 @@ export default function Institutional() {
         </div>
 
         <p className="gap-note">
-          <strong>Incomplete.</strong> The three organisations named above are the
-          ones already public on the Google Business Profile. The scope lines are
-          drafted and the years are not filled in. Add one row per contract with the
-          organisation, the scope, the year and the status, and include any others
-          missing from this list. No client logos, since Balmer Lawrie and Bicco
-          Lawrie are PSU trademarks. They are named in text only.
+          <strong>Years still to come.</strong> The three organisations and the
+          scope lines are confirmed. The years are not, and show as a dash until
+          they are &mdash; add one per contract, and any further contracts missing
+          from this list. No client logos, since Balmer Lawrie and Bicco Lawrie are
+          PSU trademarks. They are named in text only.
         </p>
       </Section>
 

@@ -8,7 +8,7 @@ export const institutional: InstitutionalClient[] = [
     "id": "balmer-lawrie",
     "organisation": "Balmer Lawrie & Co. Ltd",
     "scope": "Civil works and building maintenance under contract",
-    "year": "DRAFT — year to be confirmed",
+    "year": "—",
     "status": "Completed",
     "order": 1,
     "copyIsDraft": true
@@ -17,7 +17,7 @@ export const institutional: InstitutionalClient[] = [
     "id": "bicco-lawrie",
     "organisation": "Bicco Lawrie Ltd",
     "scope": "Civil and structural works under contract",
-    "year": "DRAFT — year to be confirmed",
+    "year": "—",
     "status": "Completed",
     "order": 2,
     "copyIsDraft": true
@@ -26,7 +26,7 @@ export const institutional: InstitutionalClient[] = [
     "id": "lt-subcontract",
     "organisation": "Larsen & Toubro",
     "scope": "Engaged as subcontractor on civil packages",
-    "year": "DRAFT — years to be confirmed",
+    "year": "—",
     "status": "Completed",
     "order": 3,
     "copyIsDraft": true
