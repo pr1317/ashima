@@ -88,7 +88,11 @@ if (!fs.existsSync('dist')) {
   await new Promise((r) => server.listen(0, '127.0.0.1', r));
   const origin = `http://127.0.0.1:${server.address().port}`;
 
-  const browser = await chromium.launch();
+  // CHROMIUM_PATH lets a machine that already has a browser point at it
+  // rather than downloading a second copy. Unset, Playwright uses its own.
+  const browser = await chromium.launch(
+    process.env.CHROMIUM_PATH ? { executablePath: process.env.CHROMIUM_PATH } : {},
+  );
   // 360 is a small Android handset, which is most of this audience.
   for (const width of [360, 768, 1400]) {
     const ctx = await browser.newContext({ viewport: { width, height: 900 } });

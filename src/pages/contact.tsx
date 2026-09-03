@@ -63,9 +63,9 @@ export default function Contact() {
               {NAP.hours}
             </p>
             <p className="gap-note">
-              <strong>Match the Google profile to this.</strong> The office is
-              open every day &mdash; Monday to Saturday 10.30am to 8pm, Sunday
-              11am to 5pm. Sunday is when working homebuyers actually visit
+              <strong>Match the Google profile to this.</strong> The hours
+              shown above &mdash; {NAP.hours} &mdash; are what the profile
+              should say. Sunday is when working homebuyers actually visit
               sites, so the profile should say so too.
             </p>
           </Reveal>

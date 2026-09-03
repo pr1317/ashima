@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex, nofollow" />
+    <title>Ashima Engineering — site editor</title>
+    <link rel="icon" href="/favicon.svg" />
+    <style>
+      /* Shown only while the CMS bundle is still downloading. Over a slow
+         connection that is several seconds of blank white page, which reads
+         as a broken link to someone who is not expecting it. */
+      #boot {
+        font: 16px/1.6 system-ui, sans-serif;
+        color: #2b3a33;
+        max-width: 32rem;
+        margin: 18vh auto 0;
+        padding: 0 1.5rem;
+        text-align: center;
+      }
+      #boot b { display: block; font-size: 1.25rem; margin-bottom: 0.5rem; }
+      #boot .slow { display: none; margin-top: 1.25rem; color: #6b7a72; font-size: 0.9rem; }
+    </style>
+  </head>
+  <body>
+    <div id="boot">
+      <b>Ashima Engineering</b>
+      Opening the site editor…
+      <p class="slow" id="slow">
+        This is taking longer than usual. Check your internet connection, then
+        reload the page.
+      </p>
+    </div>
+
+    <script>
+      var slow = setTimeout(function () {
+        var el = document.getElementById('slow');
+        if (el) el.style.display = 'block';
+      }, 8000);
+    </script>
+
+    <!-- Served from this site, not a CDN. The version is whatever
+         package-lock.json pins, so upgrading the editor is a commit somebody
+         made and reviewed rather than something a third party can change
+         under us. scripts/gen-cms-config.mjs puts the files there. -->
+    <script src="/admin/vendor/decap-cms.js"></script>
+
+    <script>
+      window.addEventListener('load', function () {
+        clearTimeout(slow);
+        var boot = document.getElementById('boot');
+        if (!window.CMS) {
+          // The bundle failed to load — almost always a blocked CDN or no
+          // connection. Say so, rather than leaving the page blank.
+          if (boot) {
+            boot.innerHTML =
+              '<b>The editor could not load</b>The editing software did not download. ' +
+              'Reload the page, and if it happens again tell whoever looks after the ' +
+              'website — the build may not have published the /admin files.';
+          }
+          return;
+        }
+        if (boot) boot.remove();
+      });
+    </script>
+  </body>
+</html>

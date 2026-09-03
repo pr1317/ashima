@@ -3,3 +3,4 @@ dist
 dist-standalone
 .DS_Store
 *.tsbuildinfo
+public/admin/vendor/
