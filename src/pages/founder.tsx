@@ -31,7 +31,7 @@ export default function Founder() {
                    alt="Partha Pratim Roy, founder of Ashima Engineering, photographed at home in Kolkata"
                    className="absolute inset-0 h-full w-full object-cover object-[50%_62%]"
                    loading="eager" fetchPriority="high" />
-              <div className="absolute inset-0 bg-[linear-gradient(150deg,hsl(154_28%_16%/.1),hsl(13_44%_49%/.26))]" />
+              <div className="absolute inset-0 bg-[linear-gradient(150deg,hsl(24_30%_16%/.1),hsl(128_14%_44%/.26))]" />
             </div>
           </Reveal>
 

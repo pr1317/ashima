@@ -7,6 +7,7 @@ import { Toaster } from '@/components/ui/toaster';
 import { TooltipProvider } from '@/components/ui/tooltip';
 import { ReviewBanner, SiteHeader } from '@/components/site-header';
 import { SiteFooter } from '@/components/site-footer';
+import { CallBar } from '@/components/call-bar';
 import { NAP, SITE_ORIGIN, AREAS_SERVED } from '@/lib/site';
 
 import Home from '@/pages/home';
@@ -125,6 +126,7 @@ function App() {
               </main>
             </div>
             <SiteFooter />
+            <CallBar />
           </div>
         </WouterRouter>
         <Toaster />

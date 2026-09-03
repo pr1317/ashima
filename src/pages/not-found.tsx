@@ -12,7 +12,7 @@ export default function NotFound() {
       <section className="on-dark relative flex min-h-[80vh] items-center overflow-hidden bg-[hsl(var(--primary))] pt-32 text-[hsl(var(--card))]">
         <div className="absolute inset-0 bg-cover bg-center opacity-25 mix-blend-luminosity"
              style={{ backgroundImage: "url('/images/projects/hero.jpg')" }} aria-hidden="true" />
-        <div className="absolute inset-0 bg-[hsl(154_28%_10%/.35)]" />
+        <div className="absolute inset-0 bg-[hsl(24_30%_10%/.35)]" />
         <div className="absolute -right-20 top-24 h-72 w-72 rounded-full border border-[hsl(var(--secondary))]/25" />
         <div className="relative z-10 mx-auto w-full max-w-[1380px] px-6 py-20 lg:px-12">
           <div className="hero-eyebrow hero-gold mb-7 inline-flex items-center gap-3 u-eyebrow">

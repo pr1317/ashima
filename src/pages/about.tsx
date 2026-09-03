@@ -196,7 +196,7 @@ export default function About() {
               <img src={PORTRAIT}
                    alt="Partha Pratim Roy, founder of Ashima Engineering, photographed at home in Kolkata"
                    className="absolute inset-0 h-full w-full object-cover object-[50%_62%]" loading="lazy" />
-              <div className="absolute inset-0 bg-[linear-gradient(150deg,hsl(154_28%_16%/.12),hsl(13_44%_49%/.3))]" />
+              <div className="absolute inset-0 bg-[linear-gradient(150deg,hsl(24_30%_16%/.12),hsl(128_14%_44%/.3))]" />
               <div className="absolute bottom-6 left-6 right-6 flex items-end justify-between border-t border-[hsl(var(--card))]/35 pt-4 text-[hsl(var(--card))]">
                 <span className="u-micro">Ashima Engineering · Founder</span>
                 <span className="d-3 italic">P. P. Roy</span>

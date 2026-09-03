@@ -77,10 +77,10 @@ export default function ProjectDetail() {
           <div className="absolute inset-0 bg-cover bg-center opacity-80 mix-blend-luminosity"
                style={{ backgroundImage: `url('${lead.src}')` }} aria-hidden="true" />
         )}
-        <div className="absolute inset-0 bg-[linear-gradient(90deg,hsl(154_28%_10%/.9)_0%,hsl(154_28%_12%/.68)_46%,hsl(154_28%_12%/.2)_100%),linear-gradient(0deg,hsl(154_28%_10%/.86),transparent_62%)]" />
-        <div className="absolute inset-0 bg-[hsl(154_28%_10%/.46)] lg:bg-[hsl(154_28%_10%/.28)]" />
+        <div className="absolute inset-0 bg-[linear-gradient(90deg,hsl(24_30%_10%/.9)_0%,hsl(24_30%_12%/.68)_46%,hsl(24_30%_12%/.2)_100%),linear-gradient(0deg,hsl(24_30%_10%/.86),transparent_62%)]" />
+        <div className="absolute inset-0 bg-[hsl(24_30%_10%/.46)] lg:bg-[hsl(24_30%_10%/.28)]" />
         {/* Keeps the nav legible where the photograph runs light. */}
-        <div className="absolute inset-x-0 top-0 h-48 bg-[linear-gradient(180deg,hsl(154_28%_8%/.8),transparent)]" />
+        <div className="absolute inset-x-0 top-0 h-48 bg-[linear-gradient(180deg,hsl(24_30%_8%/.8),transparent)]" />
         <div className="absolute -right-20 top-28 h-72 w-72 rounded-full border border-[hsl(var(--secondary))]/20 lg:right-20" />
 
         <div className="relative z-10 mx-auto w-full max-w-[1380px] px-6 pb-14 pt-40 lg:px-12 lg:pb-16">

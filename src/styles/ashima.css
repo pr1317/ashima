@@ -35,7 +35,7 @@
      label    Karla in wide uppercase, three steps, for interface text
    ========================================================================= */
 :root {
-  /* -- display: Cormorant Garamond ------------------------------------- */
+  /* -- display: Marcellus ---------------------------------------------- */
   --d-hero: clamp(3.1rem, 8.4vw, 8rem);   /* the homepage opening only */
   --d-page: clamp(2.6rem, 6vw, 6rem);     /* every inner-page <h1> */
   --d-1:    clamp(2.4rem, 5vw, 5rem);     /* major section headings */
@@ -63,17 +63,36 @@
 }
 
 /* -- display ----------------------------------------------------------- */
+/* Marcellus ships one weight, 400. Asking for 500 makes the browser
+   synthesise a bold, which on an inscriptional roman looks like a printing
+   fault. The line-heights and tracking below are set for Marcellus too, not
+   inherited from the face this replaced: Cormorant has a small x-height and
+   narrow letterforms, so it took .84 line-height and -.045em tracking without
+   colliding. Marcellus has taller caps and a wider set — the same values
+   would jam the lines into each other. */
 .d-hero, .d-page, .d-1, .d-2, .d-3, .d-4 {
   font-family: var(--app-font-serif);
-  font-weight: 500;
+  font-weight: 400;
   text-wrap: balance;
 }
-.d-hero { font-size: var(--d-hero); line-height: .84; letter-spacing: -.045em; }
-.d-page { font-size: var(--d-page); line-height: .86; letter-spacing: -.042em; }
-.d-1    { font-size: var(--d-1);    line-height: .88; letter-spacing: -.035em; }
-.d-2    { font-size: var(--d-2);    line-height: .98; letter-spacing: -.025em; }
-.d-3    { font-size: var(--d-3);    line-height: 1.06; letter-spacing: -.018em; }
-.d-4    { font-size: var(--d-4);    line-height: 1.15; letter-spacing: -.012em; }
+.d-hero { font-size: var(--d-hero); line-height: 1.00; letter-spacing: -.021em; }
+.d-page { font-size: var(--d-page); line-height: 1.02; letter-spacing: -.019em; }
+.d-1    { font-size: var(--d-1);    line-height: 1.05; letter-spacing: -.016em; }
+.d-2    { font-size: var(--d-2);    line-height: 1.10; letter-spacing: -.012em; }
+.d-3    { font-size: var(--d-3);    line-height: 1.16; letter-spacing: -.008em; }
+.d-4    { font-size: var(--d-4);    line-height: 1.22; letter-spacing: -.004em; }
+
+/* Marcellus has no italic cut, and an inscriptional roman has no italic
+   tradition to fall back on — a synthesised slant reads as a rendering fault.
+   Display lines stay upright and let colour carry the emphasis, which is what
+   the pages already do. Type only: no display, no transform. Setting either
+   here would override what a component asked for (this file is unlayered), and
+   an inline-block <em> stops a long emphasis wrapping across lines. */
+.d-hero, .d-page, .d-1, .d-2, .d-3, .d-4,
+.d-hero em, .d-page em, .d-1 em, .d-2 em, .d-3 em, .d-4 em {
+  font-style: normal;
+  font-synthesis-weight: none;
+}
 
 /* -- body -------------------------------------------------------------- */
 .t-lead { font-size: var(--t-lead); line-height: 1.72; }
@@ -130,7 +149,7 @@
    the strip often sits over a photograph, and the number has to be plainly
    legible against whatever is behind it. */
 .on-dark .rera {
-  background: hsl(154 28% 9% / 0.94);
+  background: hsl(24 30% 9% / 0.94);
   border-left-color: hsl(var(--secondary));
   color: hsl(var(--card));
 }
@@ -314,4 +333,25 @@
 
 @media (prefers-reduced-motion: reduce) {
   .rera-explainer, .field input, .field select, .field textarea { transition: none; }
+}
+
+/* ============================================================================
+   The homepage hero crossfade. Three photographs, each visible for a third of
+   the cycle. Written here rather than as a utility because it is a keyframed
+   sequence with per-child delays, which a utility cannot express.
+   ========================================================================= */
+.hero-fade {
+  opacity: 0;
+  animation: hero-fade 21s infinite;
+  will-change: opacity, transform;
+}
+@keyframes hero-fade {
+  0%   { opacity: 0; transform: scale(1.04); }
+  6%   { opacity: 1; }
+  33%  { opacity: 1; }
+  40%  { opacity: 0; transform: scale(1.12); }
+  100% { opacity: 0; transform: scale(1.12); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero-fade { animation: none; opacity: 1; }
 }

@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Karla:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Marcellus&family=Jost:wght@300;400;500;600&display=swap');
 @import 'tailwindcss';
 @import 'tw-animate-css';
 @import './styles/ashima.css';
@@ -80,46 +80,46 @@
   --elevate-1: rgba(0, 0, 0, 0.03);
   --elevate-2: rgba(0, 0, 0, 0.08);
 
-  --background: 42 32% 92%;
-  --foreground: 154 28% 16%;
-  --border: 38 20% 79%;
-  --card: 42 36% 95%;
-  --card-foreground: 154 28% 16%;
-  --card-border: 38 20% 79%;
-  --sidebar: 154 28% 16%;
-  --sidebar-foreground: 42 32% 92%;
-  --sidebar-border: 154 18% 28%;
-  --sidebar-primary: 35 71% 55%;
-  --sidebar-primary-foreground: 154 28% 16%;
-  --sidebar-accent: 154 22% 24%;
-  --sidebar-accent-foreground: 42 32% 92%;
-  --sidebar-ring: 35 71% 55%;
-  --popover: 42 36% 95%;
-  --popover-foreground: 154 28% 16%;
-  --popover-border: 38 20% 79%;
-  --primary: 154 28% 16%;
-  --primary-foreground: 42 32% 92%;
-  --secondary: 38 57% 57%;
-  --secondary-foreground: 154 28% 16%;
-  --muted: 39 22% 85%;
-  --muted-foreground: 154 12% 41%;
-  --accent: 13 44% 49%;
-  --accent-foreground: 42 36% 95%;
+  --background: 34 41% 93%;
+  --foreground: 24 28% 17%;
+  --border: 35 32% 84%;
+  --card: 36 72% 99%;
+  --card-foreground: 24 28% 17%;
+  --card-border: 35 32% 84%;
+  --sidebar: 24 30% 13%;
+  --sidebar-foreground: 36 72% 99%;
+  --sidebar-border: 24 18% 26%;
+  --sidebar-primary: 128 16% 66%;
+  --sidebar-primary-foreground: 24 30% 13%;
+  --sidebar-accent: 24 22% 20%;
+  --sidebar-accent-foreground: 36 72% 99%;
+  --sidebar-ring: 128 16% 66%;
+  --popover: 36 72% 99%;
+  --popover-foreground: 24 28% 17%;
+  --popover-border: 35 32% 84%;
+  --primary: 24 30% 13%;
+  --primary-foreground: 36 72% 99%;
+  --secondary: 128 16% 66%;
+  --secondary-foreground: 24 30% 13%;
+  --muted: 35 35% 88%;
+  --muted-foreground: 27 14% 42%;
+  --accent: 128 14% 44%;
+  --accent-foreground: 36 72% 99%;
   --destructive: 3 62% 42%;
-  --destructive-foreground: 42 36% 95%;
-  --input: 38 20% 79%;
-  --ring: 35 71% 55%;
-  --chart-1: 154 28% 16%;
-  --chart-2: 35 71% 55%;
-  --chart-3: 13 44% 49%;
-  --chart-4: 105 18% 44%;
-  --chart-5: 39 44% 65%;
-  --app-font-sans: 'Karla', sans-serif;
-  --app-font-serif: 'Cormorant Garamond', Georgia, serif;
-  --app-font-mono: 'Karla', sans-serif;
+  --destructive-foreground: 36 72% 99%;
+  --input: 35 32% 84%;
+  --ring: 128 14% 44%;
+  --chart-1: 24 30% 13%;
+  --chart-2: 128 14% 44%;
+  --chart-3: 27 14% 42%;
+  --chart-4: 35 32% 74%;
+  --chart-5: 128 16% 66%;
+  --app-font-sans: 'Jost', ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --app-font-serif: 'Marcellus', 'Hoefler Text', Georgia, serif;
+  --app-font-mono: 'Jost', ui-sans-serif, system-ui, sans-serif;
   --radius: 0.2rem;
-  --shadow-2xs: 0 1px 2px hsl(154 28% 16% / 0.06);
-  --shadow-xs: 0 2px 5px hsl(154 28% 16% / 0.08);
+  --shadow-2xs: 0 1px 2px hsl(24 30% 16% / 0.06);
+  --shadow-xs: 0 2px 5px hsl(24 30% 16% / 0.08);
   --shadow-sm:
     0px 2px 0px 0px hsl(202.8169 89.1213% 53.1373% / 0),
     0px 1px 2px -1px hsl(202.8169 89.1213% 53.1373% / 0);
@@ -201,40 +201,40 @@
   --elevate-1: rgba(255, 255, 255, 0.04);
   --elevate-2: rgba(255, 255, 255, 0.09);
 
-  --background: 154 28% 16%;
-  --foreground: 42 32% 92%;
-  --border: 154 18% 28%;
-  --card: 154 22% 21%;
-  --card-foreground: 42 32% 92%;
-  --card-border: 154 18% 28%;
-  --sidebar: 154 28% 12%;
-  --sidebar-foreground: 42 32% 92%;
-  --sidebar-border: 154 18% 24%;
-  --sidebar-primary: 35 71% 55%;
-  --sidebar-primary-foreground: 154 28% 16%;
-  --sidebar-accent: 154 22% 24%;
-  --sidebar-accent-foreground: 42 32% 92%;
-  --sidebar-ring: 35 71% 55%;
-  --popover: 154 22% 21%;
-  --popover-foreground: 42 32% 92%;
-  --popover-border: 154 18% 28%;
-  --primary: 35 71% 55%;
-  --primary-foreground: 154 28% 16%;
-  --secondary: 154 22% 24%;
-  --secondary-foreground: 42 32% 92%;
-  --muted: 154 18% 27%;
-  --muted-foreground: 42 20% 72%;
-  --accent: 13 44% 55%;
-  --accent-foreground: 42 32% 92%;
+  --background: 24 30% 11%;
+  --foreground: 36 40% 94%;
+  --border: 24 18% 24%;
+  --card: 24 26% 15%;
+  --card-foreground: 36 40% 94%;
+  --card-border: 24 18% 24%;
+  --sidebar: 24 26% 15%;
+  --sidebar-foreground: 36 40% 94%;
+  --sidebar-border: 24 18% 24%;
+  --sidebar-primary: 128 18% 62%;
+  --sidebar-primary-foreground: 24 30% 11%;
+  --sidebar-accent: 24 22% 22%;
+  --sidebar-accent-foreground: 36 40% 94%;
+  --sidebar-ring: 128 18% 58%;
+  --popover: 24 26% 15%;
+  --popover-foreground: 36 40% 94%;
+  --popover-border: 24 18% 24%;
+  --primary: 128 18% 62%;
+  --primary-foreground: 24 30% 11%;
+  --secondary: 24 22% 22%;
+  --secondary-foreground: 36 40% 94%;
+  --muted: 24 20% 20%;
+  --muted-foreground: 33 14% 68%;
+  --accent: 128 18% 58%;
+  --accent-foreground: 24 30% 11%;
   --destructive: 3 62% 55%;
-  --destructive-foreground: 42 32% 92%;
-  --input: 154 18% 28%;
-  --ring: 35 71% 55%;
-  --chart-1: 35 71% 55%;
-  --chart-2: 13 44% 55%;
-  --chart-3: 105 18% 52%;
-  --chart-4: 39 44% 65%;
-  --chart-5: 42 32% 92%;
+  --destructive-foreground: 36 40% 94%;
+  --input: 24 18% 24%;
+  --ring: 128 18% 58%;
+  --chart-1: 128 18% 62%;
+  --chart-2: 128 18% 58%;
+  --chart-3: 33 14% 68%;
+  --chart-4: 24 20% 30%;
+  --chart-5: 36 40% 94%;
 
   --shadow-2xs: 0px 2px 0px 0px hsl(202.8169 89.1213% 53.1373% / 0);
   --shadow-xs: 0px 2px 0px 0px hsl(202.8169 89.1213% 53.1373% / 0);
@@ -273,18 +273,18 @@
   .hero-eyebrow {
     border: 1px solid hsl(var(--secondary) / .6);
     /* Near-opaque, not a tint: this sits over a photograph and has to read. */
-    background: hsl(154 28% 10% / .72);
+    background: hsl(24 30% 10% / .72);
     padding: .55rem .8rem;
   }
   .hero-gold {
     color: hsl(var(--secondary));
     /* A tight shadow as well as the soft one — the soft glow alone does not
        separate gold type from a pale building behind it. */
-    text-shadow: 0 1px 2px hsl(154 28% 8% / .9), 0 1px 18px hsl(var(--primary) / .75);
+    text-shadow: 0 1px 2px hsl(24 30% 8% / .9), 0 1px 18px hsl(var(--primary) / .75);
   }
   /* Cream type sitting directly on a hero photograph. */
   .on-photo {
-    text-shadow: 0 1px 2px hsl(154 28% 8% / .8), 0 1px 16px hsl(154 28% 8% / .5);
+    text-shadow: 0 1px 2px hsl(24 30% 8% / .8), 0 1px 16px hsl(24 30% 8% / .5);
   }
   [class~="text-[8px]"] { font-size: 8.5px !important; }
   [class~="text-[9px]"] { font-size: 9.5px !important; }
