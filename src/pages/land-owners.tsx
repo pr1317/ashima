@@ -1,19 +1,18 @@
-import { Link } from 'wouter';
-import { ArrowUpRight, Phone } from 'lucide-react';
+import { MessageCircle, Phone } from 'lucide-react';
 import { Seo } from '@/components/seo';
 import { PageHero } from '@/components/page-hero';
-import { Section, DisplayHeading } from '@/components/section';
-import { Reveal } from '@/components/reveal';
+import { EnquiryForm } from '@/components/enquiry-form';
+import { Band, Head, Panel, Steps, TickList } from '@/components/blocks';
 import { NAP, telHref, whatsappHref } from '@/lib/site';
 
 const WHATSAPP =
   'Hello, I own a plot in South Kolkata and wanted to talk about developing it.';
 
-/* DRAFT. These four commitments were written as structurally plausible
-   examples of what a joint-venture developer can commit to. They are NOT yet
-   the business's commitments. Partha Pratim Roy must confirm, amend or replace
-   each one before this page goes live — a commitment published here and not
-   honoured is worse than no page at all. */
+/* Three of these four are confirmed by the business. The possession-date one
+   is not: it says the consequence of missing the date is written into the
+   agreement beside it, and what that consequence is has not been confirmed.
+   It is a promise about money to a landowner, so it must not go live as it
+   stands. The note under the list says so on the page. */
 const commitments: [string, string][] = [
   ["The owner's share is defined in writing before anything is signed.",
    'Which flats, on which floors, with which parking, named in the agreement rather than described in a conversation. You should be able to point at a drawing and say those ones are mine.'],
@@ -48,190 +47,82 @@ export default function LandOwners() {
     <>
       <Seo path="/land-owners"
            title="Own land in South Kolkata? | Ashima Engineering"
-           description="Joint-venture redevelopment for landowners in Santoshpur, Garfa, Jadavpur, Mukundapur, Baruipur and Sonarpur. How it works, what we commit to, and what we would need to see." />
+           description={`Thirty joint ventures completed in South Kolkata since ${NAP.founded}. What the owner gets, in writing, before anything is signed.`} />
 
-      <PageHero image="/images/site/oldhouse.jpg" eyebrow="Land owners"
-                heading={<>Own land here?<br /><em>Let&rsquo;s talk about</em><br />what it could become.</>}
-                marker="Joint-venture development">
-        <div className="mt-9 max-w-xl">
-          <p className="t-sm text-[hsl(var(--card))]/85">
-            A joint venture means you keep your land and we build on it. You are
-            paid in flats in the finished building rather than a lump sum, and
-            the split is agreed in writing before anything is signed.
-          </p>
-          <div className="mt-8 flex flex-wrap gap-3">
-            <a href={telHref}
-               className="flex items-center gap-2 bg-[hsl(var(--secondary))] px-5 py-3.5 u-label text-[hsl(var(--primary))] transition-transform hover:-translate-y-1">
-              <Phone size={14} /> Call {NAP.phone}
-            </a>
-            <a href={whatsappHref(WHATSAPP)} rel="noopener" target="_blank"
-               className="flex items-center gap-2 border border-[hsl(var(--card))]/35 px-5 py-3.5 u-label text-[hsl(var(--card))] transition-colors hover:border-[hsl(var(--secondary))] hover:text-[hsl(var(--secondary))]">
-              WhatsApp <ArrowUpRight size={14} />
-            </a>
-          </div>
-        </div>
+      <PageHero eyebrow="Joint ventures · 30 completed"
+                heading="You own the land. Here is exactly what you get."
+                image="/images/projects/prarthana-a.jpg">
+        Thirty joint ventures completed, every one settled on the terms agreed
+        at the start.
       </PageHero>
 
-      {/* --- 01 / Why it comes up ----------------------------------------- */}
-      <Section eyebrow="01 / Why it comes up" tone="light">
-        <div className="mt-10 grid gap-12 lg:grid-cols-[1fr_1.6fr] lg:gap-20">
-          <div />
-          <Reveal delay={1}>
-            <p className="max-w-2xl t-lead text-[hsl(var(--primary))]">
-              Most of what we have built since 1995 started as somebody&rsquo;s old house
-              on a plot in one of these localities.
-            </p>
-            <p className="mt-6 max-w-2xl t-body text-[hsl(var(--muted-foreground))]">
-              If you have been approached by developers before and it did not go
-              well, that is a common enough story around here. It is worth one
-              conversation.
-            </p>
-          </Reveal>
-        </div>
-      </Section>
-
-      {/* --- 02 / How it works -------------------------------------------- */}
-      <Section eyebrow="02 / How it works" tone="dark">
-        <div className="mt-2 grid gap-9 lg:grid-cols-[.8fr_1.8fr]">
-          <div />
-          <Reveal>
-            <DisplayHeading className="max-w-3xl d-1" em="a sequence.">
-              It genuinely is
-            </DisplayHeading>
-            <p className="mt-8 max-w-xl t-body text-[hsl(var(--card))]/85">
-              This is the order it happens in.
-            </p>
-          </Reveal>
-        </div>
-
-        <div className="mt-14 border-t border-[hsl(var(--card))]/20">
-          {steps.map(([n, t, d], i) => (
-            <Reveal key={n} delay={(i % 4) as 0 | 1 | 2 | 3}>
-              <div className="grid gap-4 border-b border-[hsl(var(--card))]/20 py-6 md:grid-cols-[70px_1fr_1.15fr] md:items-start md:gap-8">
-                <span className="d-3 italic text-[hsl(var(--secondary))]">{n}</span>
-                <h3 className="max-w-xs d-3">{t}</h3>
-                <p className="max-w-lg t-sm text-[hsl(var(--card))]/72">{d}</p>
-              </div>
-            </Reveal>
-          ))}
-        </div>
-      </Section>
-
-      {/* --- 03 / What we commit to --------------------------------------- */}
-      <Section eyebrow="03 / What we commit to" tone="gold">
-        <div className="mt-2 grid gap-9 lg:grid-cols-[.8fr_1.8fr]">
-          <div />
-          <Reveal>
-            <DisplayHeading className="max-w-3xl d-1" em="all of them checkable.">
-              Four things,
-            </DisplayHeading>
-            <p className="mt-8 max-w-xl t-body text-[hsl(var(--primary))]/70">
-              If a developer will not put these in writing, that tells you something.
-            </p>
-          </Reveal>
-        </div>
-
-        <div className="mt-14 grid gap-x-14 border-t border-[hsl(var(--primary))]/25 md:grid-cols-2">
-          {commitments.map(([t, d], i) => (
-            <Reveal key={t} delay={(i % 4) as 0 | 1 | 2 | 3}
-                    className="border-b border-[hsl(var(--primary))]/25 py-7">
-              <b className="block d-3">{t}</b>
-              <span className="mt-3 block t-sm text-[hsl(var(--primary))]/70">{d}</span>
-            </Reveal>
+      {/* --- What we commit to -------------------------------------------- */}
+      <Band testid="section-commitments">
+        <Head eyebrow="In writing, first">Four things in writing</Head>
+        <div className="mt-7 grid gap-3 lg:grid-cols-2 lg:gap-5">
+          {commitments.map(([t, d]) => (
+            <Panel key={t}>
+              <h3 className="d-4 text-[hsl(var(--primary))]">{t}</h3>
+              <p className="mt-2.5 t-sm t-wide text-[hsl(var(--muted-foreground))]">{d}</p>
+            </Panel>
           ))}
         </div>
         <p className="gap-note">
           <strong>One of four still to confirm.</strong> The commitments on the
-          owner&rsquo;s share, on demolition waiting for sanction, and on visiting
-          the site unannounced are confirmed. The possession-date commitment says
-          the consequence of missing the date is written into the agreement beside
-          it &mdash; what that consequence is has not been confirmed, so that
-          clause should not go live as it stands.
+          owner&rsquo;s share, on demolition waiting for sanction, and on visiting the
+          site unannounced are confirmed. The possession-date commitment says the
+          consequence of missing the date is written into the agreement beside it
+          &mdash; what that consequence is has not been confirmed, so that clause
+          should not go live as it stands.
         </p>
-      </Section>
+      </Band>
 
-      {/* --- 04 / Why us -------------------------------------------------- */}
-      <Section eyebrow="04 / Why us" tone="card">
-        <div className="mt-10 grid gap-14 lg:grid-cols-2 lg:items-center lg:gap-20">
-          <Reveal>
-            <DisplayHeading className="d-1 text-[hsl(var(--primary))]"
-                            em="within a few kilometres.">
-              Sixty-odd buildings,
-            </DisplayHeading>
-            <p className="mt-9 max-w-lg t-body text-[hsl(var(--muted-foreground))]">
-              Thirty years, all of them within a few kilometres of here. We are
-              not a group that turned up in Santoshpur last year because the land
-              got expensive. The office has been on Aurobindo Road the whole time,
-              and the same person has run it since 1993.
-            </p>
-            <p className="mt-5 max-w-lg t-body text-[hsl(var(--muted-foreground))]">
-              Past landowners will speak to you. Ask, and we will put you in touch
-              with people whose buildings went up ten and twenty years ago, so you
-              can hear how it went once the work was finished and everyone had
-              moved in.
-            </p>
-            <Link href="/projects"
-                  className="mt-9 inline-flex items-center gap-3 border-b border-[hsl(var(--primary))]/35 pb-2 u-label text-[hsl(var(--primary))] transition-colors hover:border-[hsl(var(--accent))] hover:text-[hsl(var(--accent))]">
-              See every building since 1995 <ArrowUpRight size={15} />
-            </Link>
-          </Reveal>
-          <Reveal delay={1}>
-            <div className="aspect-[1.15] overflow-hidden bg-[hsl(var(--muted))]">
-              <img src="/images/site/formwork.jpg" loading="lazy"
-                   alt="Steel reinforcement and timber formwork in place on a concrete slab before casting. Stand-in photograph."
-                   className="h-full w-full object-cover" />
+      {/* --- The process --------------------------------------------------- */}
+      <Band tone="card" testid="section-process">
+        <Head eyebrow="Start to finish" lede="This is the order it happens in.">
+          How it goes
+        </Head>
+        <div className="mt-7">
+          <Steps steps={steps.map(([, title, body]) => ({ title, body }))} />
+        </div>
+      </Band>
+
+      {/* --- What to bring -------------------------------------------------- */}
+      <Band testid="section-documents">
+        <Head eyebrow="Before the first meeting">What to bring</Head>
+        <div className="mt-6 max-w-[62ch]">
+          <TickList items={documents.map(([t, d]) => (
+            <span key={t}>
+              <b className="font-medium text-[hsl(var(--primary))]">{t}</b>
+              {' \u2014 '}
+              <span className="text-[hsl(var(--muted-foreground))]">{d}</span>
+            </span>
+          ))} />
+        </div>
+      </Band>
+
+      {/* --- Talk to us ----------------------------------------------------- */}
+      <Band tone="deep" testid="section-land-contact">
+        <div className="grid gap-9 lg:grid-cols-2 lg:gap-16">
+          <div>
+            <Head onDark eyebrow="No obligation"
+                  lede={`Tell us where the plot is. Nothing is needed in writing, and the first conversation is usually half an hour. ${NAP.hours}`}>
+              Talk about your plot
+            </Head>
+            <div className="mt-7 flex flex-col gap-3 sm:flex-row">
+              <a href={whatsappHref(WHATSAPP)} data-testid="link-land-whatsapp"
+                 className="inline-flex min-h-13 items-center justify-center gap-2 rounded-[var(--radius)] bg-[hsl(var(--secondary))] px-7 u-label text-[hsl(var(--primary))]">
+                <MessageCircle size={16} aria-hidden="true" /> WhatsApp us
+              </a>
+              <a href={telHref} data-testid="link-land-phone"
+                 className="inline-flex min-h-13 items-center justify-center gap-2 rounded-[var(--radius)] border border-[hsl(var(--card))]/40 px-7 u-label text-[hsl(var(--card))]">
+                <Phone size={16} aria-hidden="true" /> {NAP.phone}
+              </a>
             </div>
-          </Reveal>
-        </div>
-      </Section>
-
-      {/* --- 05 / What we would need to see -------------------------------- */}
-      <Section eyebrow="05 / What we would need to see" tone="light">
-        <div className="mt-2 grid gap-9 lg:grid-cols-[.8fr_1.8fr]">
-          <div />
-          <Reveal>
-            <DisplayHeading className="max-w-3xl d-1 text-[hsl(var(--primary))]"
-                            em="Not for a first conversation.">
-              Eventually.
-            </DisplayHeading>
-          </Reveal>
-        </div>
-
-        <div className="mt-14 border-t border-[hsl(var(--primary))]/15">
-          {documents.map(([t, d], i) => (
-            <Reveal key={t} delay={(i % 4) as 0 | 1 | 2 | 3}>
-              <div className="grid gap-3 border-b border-[hsl(var(--primary))]/15 py-5 md:grid-cols-[16rem_1fr] md:gap-10">
-                <h3 className="d-3 text-[hsl(var(--primary))]">{t}</h3>
-                <p className="max-w-2xl t-sm text-[hsl(var(--muted-foreground))]">{d}</p>
-              </div>
-            </Reveal>
-          ))}
-        </div>
-
-        <Reveal className="on-dark mt-14 bg-[hsl(var(--primary))] p-9 text-[hsl(var(--card))] lg:p-12">
-          <DisplayHeading as="h2" className="max-w-2xl d-2"
-                          em="needs none of it.">
-            A first conversation
-          </DisplayHeading>
-          <p className="mt-7 max-w-xl t-body text-[hsl(var(--card))]/85">
-            Call and describe the plot. If it is not worth doing we will say so on
-            the phone rather than send somebody to look at it.
-          </p>
-          <div className="mt-9 flex flex-wrap gap-3">
-            <a href={telHref}
-               className="flex items-center gap-2 bg-[hsl(var(--secondary))] px-5 py-3.5 u-label text-[hsl(var(--primary))] transition-transform hover:-translate-y-1">
-              <Phone size={14} /> {NAP.phone}
-            </a>
-            <a href={whatsappHref(WHATSAPP)} rel="noopener" target="_blank"
-               className="flex items-center gap-2 border border-[hsl(var(--card))]/35 px-5 py-3.5 u-label text-[hsl(var(--card))] transition-colors hover:border-[hsl(var(--secondary))] hover:text-[hsl(var(--secondary))]">
-              WhatsApp <ArrowUpRight size={14} />
-            </a>
           </div>
-          <p className="mt-6 u-label text-[hsl(var(--card))]/58">
-            {NAP.hours}
-          </p>
-        </Reveal>
-      </Section>
+          <EnquiryForm name="contact-enquiry" onDark />
+        </div>
+      </Band>
     </>
   );
 }

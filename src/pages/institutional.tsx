@@ -1,9 +1,7 @@
-import { ArrowUpRight, Building2, Phone } from 'lucide-react';
 import { Seo } from '@/components/seo';
 import { PageHero } from '@/components/page-hero';
-import { Section, DisplayHeading } from '@/components/section';
-import { Reveal } from '@/components/reveal';
-import { institutional } from '@/lib/content';
+import { Band, DefList, Head } from '@/components/blocks';
+import { institutional } from '@/data/institutional';
 import { NAP, telHref } from '@/lib/site';
 
 const capability: [string, string][] = [
@@ -13,6 +11,8 @@ const capability: [string, string][] = [
   ['Subcontracted', 'Specialist trades such as lifts, electrical and plumbing, engaged per project.'],
 ];
 
+/* PAN is deliberately absent: the business has decided not to publish it.
+   The rest are still to come, and a tender evaluator reads this block first. */
 const credentials: [string, string][] = [
   ['Company registration number', 'To be supplied'],
   ['GST', 'To be supplied'],
@@ -23,89 +23,55 @@ const credentials: [string, string][] = [
 export default function Institutional() {
   return (
     <>
-      <Seo path="/institutional"
-           title="Institutional and government work, Ashima Engineering"
-           description="Ashima Engineering has executed contracts and tenders for government and government-associated organisations alongside its residential work in South Kolkata since 1995." />
+      <Seo path="/institutional" title="Institutional and government work | Ashima Engineering"
+           description={`Ashima Engineering has executed contracts and tenders for government and government-associated organisations alongside its residential work in South Kolkata since ${NAP.firstDelivery}.`} />
 
-      <PageHero image="/images/site/formwork.jpg" eyebrow="Institutional"
-                heading={<>Institutional and<br /><em>government work.</em></>}
-                marker="Contracts &amp; tenders">
-        <p className="mt-9 max-w-lg t-sm text-[hsl(var(--card))]/85">
-          Alongside residential development, Ashima Engineering has executed
-          contracts and tenders for government and government-associated
-          organisations, and has worked as a subcontractor to larger construction
-          groups including L&amp;T.
-        </p>
+      <PageHero eyebrow="Institutional"
+                heading="Work executed under government contract"
+                image="/images/projects/barnali-a.jpg">
+        Alongside residential development, Ashima Engineering has executed
+        contracts and tenders for government and government-associated
+        organisations since {NAP.firstDelivery}.
       </PageHero>
 
-      {/* --- 01 / Client record ------------------------------------------- */}
-      <Section eyebrow="01 / Client record" tone="light">
-        <div className="mt-2 grid gap-9 lg:grid-cols-[.8fr_1.8fr]">
-          <div />
-          <Reveal>
-            <DisplayHeading className="max-w-3xl d-1 text-[hsl(var(--primary))]"
-                            em="record.">
-              Client
-            </DisplayHeading>
-            <p className="mt-8 max-w-2xl t-body text-[hsl(var(--muted-foreground))]">
-              The work below is listed as executed and completed. We are happy to
-              provide documentation on request.
-            </p>
-          </Reveal>
+      {/* --- Client record -------------------------------------------------- */}
+      <Band testid="section-clients">
+        <Head eyebrow="Client record"
+              lede="The work below is listed as executed and completed. We are happy to put a tender evaluator in touch with the relevant office.">
+          Who we have worked for
+        </Head>
+
+        <div className="mt-7 border-t border-[hsl(var(--border))]">
+          {institutional.map((c) => (
+            <div key={c.id} data-testid={`row-client-${c.id}`}
+                 className="grid gap-1 border-b border-[hsl(var(--border))] py-4 lg:grid-cols-[1fr_16rem_9rem] lg:items-baseline lg:gap-6">
+              <h3 className="d-4 text-[hsl(var(--primary))]">{c.organisation}</h3>
+              <p className="t-sm t-wide text-[hsl(var(--muted-foreground))]">{c.scope}</p>
+              <p className="u-micro text-[hsl(var(--accent))] lg:text-right">
+                {c.status}{c.year && c.year !== '—' ? ` · ${c.year}` : ''}
+              </p>
+            </div>
+          ))}
         </div>
 
-        <div className="mt-12 overflow-x-auto">
-          <table className="dtable min-w-[46rem]" data-testid="table-institutional">
-            <thead>
-              <tr>
-                <th scope="col">Organisation</th>
-                <th scope="col">Scope</th>
-                <th scope="col">Year</th>
-                <th scope="col">Status</th>
-              </tr>
-            </thead>
-            <tbody>
-              {institutional.map((c) => (
-                <tr key={c.id} data-testid={`row-institutional-${c.id}`}>
-                  <th scope="row" className="orgcell">{c.organisation}</th>
-                  <td>{c.scope}</td>
-                  <td>{c.year}</td>
-                  <td>{c.status}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
+        <p className="mt-4 t-fine text-[hsl(var(--muted-foreground))]">
+          Named in text only — no client logos, since Balmer Lawrie and Bicco
+          Lawrie are PSU trademarks.
+        </p>
 
         <p className="gap-note">
           <strong>Years still to come.</strong> The three organisations and the
           scope lines are confirmed. The years are not, and show as a dash until
           they are &mdash; add one per contract, and any further contracts missing
-          from this list. No client logos, since Balmer Lawrie and Bicco Lawrie are
-          PSU trademarks. They are named in text only.
+          from this list.
         </p>
-      </Section>
+      </Band>
 
-      {/* --- 02 / Capability ---------------------------------------------- */}
-      <Section eyebrow="02 / Capability" tone="gold">
-        <div className="mt-2 grid gap-9 lg:grid-cols-[.8fr_1.8fr]">
-          <div />
-          <Reveal>
-            <DisplayHeading className="max-w-3xl d-1" em="we bring.">
-              What
-            </DisplayHeading>
-          </Reveal>
-        </div>
-
-        <div className="mt-14 border-t border-[hsl(var(--primary))]/25">
-          {capability.map(([t, d], i) => (
-            <Reveal key={t} delay={(i % 4) as 0 | 1 | 2 | 3}>
-              <div className="grid gap-4 border-b border-[hsl(var(--primary))]/25 py-6 md:grid-cols-[16rem_1fr] md:gap-10">
-                <h3 className="d-3">{t}</h3>
-                <p className="max-w-2xl t-body text-[hsl(var(--primary))]/70">{d}</p>
-              </div>
-            </Reveal>
-          ))}
+      {/* --- Capability ----------------------------------------------------- */}
+      <Band tone="card" testid="section-capability">
+        <Head eyebrow="Capability">What we are set up to do</Head>
+        <div className="mt-6 max-w-[70ch]">
+          <DefList rows={capability} />
         </div>
         <p className="gap-note">
           <strong>Draft.</strong> Written for review from what is known of the
@@ -113,71 +79,30 @@ export default function Institutional() {
           institutional capability a tender evaluator would want to see, such as
           plant, manpower and the largest contract value executed.
         </p>
-      </Section>
+      </Band>
 
-      {/* --- 03 / Credentials --------------------------------------------- */}
-      <Section eyebrow="03 / Credentials" tone="dark">
-        <div className="mt-2 grid gap-9 lg:grid-cols-[.8fr_1.8fr]">
-          <div />
-          <Reveal>
-            <DisplayHeading className="max-w-3xl d-1" em="the firm is real.">
-              The numbers that prove
-            </DisplayHeading>
-          </Reveal>
+      {/* --- Credentials ---------------------------------------------------- */}
+      <Band tone="deep" testid="section-credentials-inst">
+        <Head onDark eyebrow="Credentials"
+              lede="A tender evaluator checks this block first. Empty rows here cost work.">
+          Registration and compliance
+        </Head>
+        <div className="mt-6 max-w-[70ch]">
+          <DefList onDark rows={credentials.map(([k, v]) => [
+            k,
+            <span key={k} className="text-[hsl(var(--secondary))]">{v}</span>,
+          ])} />
         </div>
-
-        <div className="mt-12 overflow-x-auto">
-          <table className="dtable min-w-[34rem]">
-            <tbody>
-              {credentials.map(([k, v]) => (
-                <tr key={k}><th scope="row">{k}</th><td>{v}</td></tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-        <p className="gap-note">
-          <strong>Needed before launch.</strong> A tender evaluator checks this
-          table first. These are the numbers that prove the firm is real. Nothing
-          can be invented here and nothing has been.
+        <p className="mt-8 t-body text-[hsl(var(--card))]/70">
+          Tender enquiries reach the office on{' '}
+          <a href={telHref} className="text-[hsl(var(--secondary))] underline underline-offset-4"
+             data-testid="link-inst-phone">{NAP.phone}</a>.
         </p>
-      </Section>
-
-      {/* --- 04 / Tender and procurement ---------------------------------- */}
-      <Section eyebrow="04 / Tender and procurement" tone="card">
-        <div className="mt-10 grid gap-12 lg:grid-cols-2 lg:gap-20">
-          <Reveal>
-            <DisplayHeading className="d-1 text-[hsl(var(--primary))]"
-                            em="a direct line.">
-              A named person,
-            </DisplayHeading>
-            <p className="mt-8 max-w-md t-body text-[hsl(var(--muted-foreground))]">
-              For tender and procurement enquiries — not a general enquiry form.
-            </p>
-            <a href={telHref}
-               className="mt-9 inline-flex items-center gap-3 bg-[hsl(var(--primary))] px-6 py-4 u-label text-[hsl(var(--card))] transition-transform hover:-translate-y-1"
-               data-testid="link-tender-phone">
-              <Phone size={14} /> {NAP.phone} <ArrowUpRight size={14} />
-            </a>
-            <p className="mt-5 u-label text-[hsl(var(--muted-foreground))]">
-              {NAP.hours}
-            </p>
-          </Reveal>
-          <Reveal delay={1}>
-            <div className="flex items-start gap-5 border-l border-[hsl(var(--primary))]/20 pl-7">
-              <Building2 size={26} strokeWidth={1.25} className="mt-1 shrink-0 text-[hsl(var(--accent))]" />
-              <p className="t-body text-[hsl(var(--muted-foreground))]">
-                Contracts for government-associated organisations, including
-                Balmer Lawrie and Bicco Lawrie, and subcontracted civil packages
-                for larger construction groups.
-              </p>
-            </div>
-            <p className="gap-note">
-              <strong>Needed.</strong> The name of whoever handles tender enquiries,
-              and a direct line for them. The office number is standing in for now.
-            </p>
-          </Reveal>
-        </div>
-      </Section>
+        <p className="gap-note">
+          <strong>Needed.</strong> The name of whoever handles tender enquiries,
+          and a direct line for them. The office number is standing in for now.
+        </p>
+      </Band>
     </>
   );
 }

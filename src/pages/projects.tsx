@@ -1,174 +1,93 @@
 import { useMemo, useState } from 'react';
-import { Link } from 'wouter';
-import { ArrowUpRight } from 'lucide-react';
 import { Seo } from '@/components/seo';
 import { PageHero } from '@/components/page-hero';
-import { Section, DisplayHeading } from '@/components/section';
-import { Reveal } from '@/components/reveal';
 import { ProjectCard } from '@/components/project-card';
-import {
-  hasOwnPage, liveProjects, projectsByYear, recordLocalities, recordTotals,
-} from '@/lib/content';
+import { Band, FilterChips, Head, MiniCard, ShowMore, type Chip } from '@/components/blocks';
+import { projects } from '@/data/projects';
+import { finishedProjects, liveProjects } from '@/lib/content';
+import { NAP } from '@/lib/site';
+
+/** How many of the handed-over record to show before asking. Four fills two
+ *  rows on a phone and one on a desktop, which is enough to show what the
+ *  record looks like without making the page endless. */
+const FIRST = 8;
 
 export default function Projects() {
-  const [locality, setLocality] = useState<string>('all');
+  const [filter, setFilter] = useState('all');
 
-  /* Every group, count and filter below derives from the collection — there is
-     no hardcoded list anywhere, so adding a markdown file is genuinely all it
-     takes for a building to appear here. */
-  const groups = useMemo(
-    () => projectsByYear
-      .map(({ year, projects }) => ({
-        year,
-        projects: locality === 'all' ? projects : projects.filter((p) => p.locality === locality),
-      }))
-      .filter((g) => g.projects.length > 0),
-    [locality],
+  const years = finishedProjects
+    .map((p) => p.yearCompleted)
+    .filter((y): y is number => typeof y === 'number');
+  const span = years.length ? `${Math.min(...years)}–${Math.max(...years)}` : '';
+
+  const chips: Chip[] = [
+    { key: 'all', label: 'All', count: projects.length },
+    { key: 'available', label: 'Open for booking', count: projects.filter((p) => p.status === 'available').length },
+    { key: 'under-construction', label: 'Under construction', count: projects.filter((p) => p.status === 'under-construction').length },
+    { key: 'completed', label: 'Handed over', count: finishedProjects.length },
+  ];
+
+  const showLive = filter === 'all' || filter === 'available' || filter === 'under-construction';
+  const live = useMemo(
+    () => (filter === 'all' ? liveProjects : liveProjects.filter((p) => p.status === filter)),
+    [filter],
   );
-
-  const shown = groups.reduce((n, g) => n + g.projects.length, 0);
+  const showRecord = filter === 'all' || filter === 'completed';
 
   return (
     <>
-      <Seo path="/projects"
-           title="Projects, every building since 1995 | Ashima Engineering"
-           description="The complete record of every residential project Ashima Engineering has delivered in South Kolkata since 1995, by year, with what is open for booking now." />
+      <Seo path="/projects" title="Projects — Ashima Engineering"
+           description={`Every building Ashima Engineering has put up in South Kolkata since ${NAP.firstDelivery}, and what is open for booking now.`} />
 
-      <PageHero image="/images/projects/sraboni-b.jpg" eyebrow="Since 1995"
-                heading={<>A place to<br /><em>put down roots.</em></>}
-                marker="60+ delivered">
-        <p className="mt-9 max-w-md t-sm text-[hsl(var(--card))]/85">
-          What is open for booking now, and underneath it every building we have
-          finished since 1995.
-        </p>
+      <PageHero eyebrow={`The record, ${NAP.firstDelivery} to today`}
+                heading="Every building we have put up"
+                image="/images/projects/record-a.jpg">
+        {projects.length} in all: {finishedProjects.length} handed over,{' '}
+        {liveProjects.length} open now. Anything being sold shows its WBRERA
+        registration number.
       </PageHero>
 
-      {/* --- 01 / Open for booking ---------------------------------------- */}
-      <Section id="available" eyebrow="01 / Open for booking" tone="light">
-        <div className="mt-2 grid gap-9 lg:grid-cols-[.8fr_1.8fr]">
-          <div />
-          <Reveal>
-            <DisplayHeading className="max-w-3xl d-1 text-[hsl(var(--primary))]"
-                            em="booking.">
-              Open for
-            </DisplayHeading>
-          </Reveal>
-        </div>
+      <Band testid="section-projects">
+        <FilterChips chips={chips} value={filter} onChange={setFilter} label="Filter projects" />
 
-        {liveProjects.length > 0 ? (
-          <div className="mt-14 grid gap-7 lg:grid-cols-2">
-            {liveProjects.map((p, i) => (
-              <ProjectCard key={p.id} project={p} priority={i === 0} />
-            ))}
-          </div>
-        ) : (
-          <div className="mt-14 border border-[hsl(var(--primary))]/20 bg-[hsl(var(--card))] p-8">
-            <p className="max-w-lg t-body text-[hsl(var(--muted-foreground))]">
-              No new project is open for booking right now. Tell us what you're
-              looking for and we'll call you when the next one opens.
-            </p>
-            <Link href="/contact#enquire"
-                  className="mt-6 inline-flex items-center gap-2 bg-[hsl(var(--primary))] px-5 py-3.5 u-label text-[hsl(var(--card))]">
-              Tell us what you want <ArrowUpRight size={14} />
-            </Link>
-          </div>
+        {showLive && live.length > 0 && (
+          <>
+            <p className="mt-8 u-eyebrow text-[hsl(var(--accent))]">Available now</p>
+            <div className="mt-5 grid gap-4 lg:grid-cols-2 lg:gap-6">
+              {live.map((p) => <ProjectCard key={p.id} project={p} />)}
+            </div>
+          </>
         )}
-      </Section>
 
-      {/* --- 02 / The record ---------------------------------------------- */}
-      <Section id="record" eyebrow="02 / The record" tone="dark">
-        <div className="mt-2 grid gap-9 lg:grid-cols-[.8fr_1.8fr]">
-          <div />
-          <Reveal>
-            <DisplayHeading className="max-w-4xl d-1" em="1995 to today.">
-              Every project,
-            </DisplayHeading>
-            <p className="mt-8 max-w-2xl t-body text-[hsl(var(--card))]/85">
-              Sixty-odd buildings across South Kolkata. We do not have photographs of
-              all of them, because the early ones were finished before anyone thought to
-              take any. They are on the list regardless.
-            </p>
-          </Reveal>
-        </div>
+        {showRecord && (
+          <>
+            <div className="mt-12 flex flex-wrap items-baseline gap-x-4 gap-y-1">
+              <Head>Handed over</Head>
+              <span className="u-micro text-[hsl(var(--muted-foreground))]">
+                {finishedProjects.length} · {span}
+              </span>
+            </div>
 
-        <div className="mt-12 flex flex-wrap gap-x-10 gap-y-3 border-y border-[hsl(var(--card))]/20 py-5 u-label text-[hsl(var(--secondary))]">
-          <span>{recordTotals.buildings} buildings</span>
-          <span>{recordTotals.flats} flats</span>
-          <span>{recordTotals.localities} localities</span>
-          <span>{recordTotals.firstYear}–{recordTotals.lastYear}</span>
-        </div>
+            <div className="mt-6 grid grid-cols-2 gap-3 lg:grid-cols-4 lg:gap-5">
+              {finishedProjects.slice(0, FIRST).map((p) => <MiniCard key={p.id} project={p} />)}
+            </div>
 
-        <div className="mt-8 flex flex-wrap gap-2" role="group"
-             aria-label="Filter the record by locality">
-          <button type="button" aria-pressed={locality === 'all'}
-                  onClick={() => setLocality('all')}
-                  className={`border px-4 py-2.5 u-label transition-colors ${
-                    locality === 'all'
-                      ? 'border-[hsl(var(--secondary))] bg-[hsl(var(--secondary))] text-[hsl(var(--primary))]'
-                      : 'border-[hsl(var(--card))]/25 text-[hsl(var(--card))]/72 hover:border-[hsl(var(--secondary))] hover:text-[hsl(var(--secondary))]'}`}
-                  data-testid="button-filter-all">
-            All localities
-          </button>
-          {recordLocalities.map((l) => (
-            <button key={l} type="button" aria-pressed={locality === l}
-                    onClick={() => setLocality(l)}
-                    className={`border px-4 py-2.5 u-label transition-colors ${
-                      locality === l
-                        ? 'border-[hsl(var(--secondary))] bg-[hsl(var(--secondary))] text-[hsl(var(--primary))]'
-                        : 'border-[hsl(var(--card))]/25 text-[hsl(var(--card))]/72 hover:border-[hsl(var(--secondary))] hover:text-[hsl(var(--secondary))]'}`}
-                    data-testid={`button-filter-${l.toLowerCase()}`}>
-              {l}
-            </button>
-          ))}
-        </div>
-
-        <p className="mt-5 u-label text-[hsl(var(--card))]/58"
-           aria-live="polite" data-testid="text-record-count">
-          {locality === 'all'
-            ? `Showing all ${shown} buildings.`
-            : `Showing ${shown} ${shown === 1 ? 'building' : 'buildings'} in ${locality}.`}
-        </p>
-
-        <div className="mt-12 border-t border-[hsl(var(--card))]/20">
-          {groups.map(({ year, projects }) => (
-            <Reveal key={year}>
-              <div className="grid gap-4 border-b border-[hsl(var(--card))]/20 py-7 md:grid-cols-[9rem_1fr] md:gap-10">
-                <div>
-                  <p className="d-2 italic text-[hsl(var(--secondary))]">{year}</p>
-                  <p className="mt-2 u-micro text-[hsl(var(--card))]/58">
-                    {projects.length} {projects.length === 1 ? 'building' : 'buildings'}
-                  </p>
+            {finishedProjects.length > FIRST && (
+              <ShowMore label={`Show all ${finishedProjects.length}`}>
+                <div className="mt-3 grid grid-cols-2 gap-3 lg:grid-cols-4 lg:gap-5">
+                  {finishedProjects.slice(FIRST).map((p) => <MiniCard key={p.id} project={p} />)}
                 </div>
-                <div>
-                  {projects.map((p) => {
-                    const inner = (
-                      <>
-                        <span className="d-3 text-[hsl(var(--card))]">{p.name}</span>
-                        <span className="u-label text-[hsl(var(--card))]/58">{p.locality}</span>
-                        <span className="text-right u-label text-[hsl(var(--card))]/58">
-                          {p.totalUnits ? `${p.totalUnits} flats` : '—'}
-                        </span>
-                      </>
-                    );
-                    const shape = 'grid grid-cols-[1fr_auto] items-baseline gap-x-6 gap-y-1 border-b border-[hsl(var(--card))]/10 py-3.5 last:border-b-0 sm:grid-cols-[1fr_9rem_6rem]';
-                    return hasOwnPage(p) ? (
-                      <Link key={p.id} href={`/projects/${p.id}`}
-                            className={`${shape} group transition-all hover:pl-3`}
-                            data-testid={`row-project-${p.id}`}>
-                        {inner}
-                      </Link>
-                    ) : (
-                      <div key={p.id} className={shape} data-testid={`row-project-${p.id}`}>
-                        {inner}
-                      </div>
-                    );
-                  })}
-                </div>
-              </div>
-            </Reveal>
-          ))}
-        </div>
-      </Section>
+              </ShowMore>
+            )}
+          </>
+        )}
+
+        {!showLive && !showRecord && (
+          <p className="mt-10 t-body text-[hsl(var(--muted-foreground))]">
+            Nothing in that category yet.
+          </p>
+        )}
+      </Band>
     </>
   );
 }

@@ -1,126 +1,76 @@
-import { ArrowUpRight, Mail, MapPin, Phone } from 'lucide-react';
+import { MapPin, MessageCircle, Phone } from 'lucide-react';
 import { Seo } from '@/components/seo';
 import { PageHero } from '@/components/page-hero';
-import { Section, DisplayHeading } from '@/components/section';
-import { Reveal } from '@/components/reveal';
 import { EnquiryForm } from '@/components/enquiry-form';
+import { Band, DefList, Head } from '@/components/blocks';
 import {
   NAP, addressOneLine, mailHref, mapsDirections, mapsEmbed, telHref, whatsappHref,
 } from '@/lib/site';
 
-export default function Contact() {
-  const mapQuery = `${addressOneLine}, India`;
+const WHATSAPP = 'Hello, I saw the Ashima Engineering website and wanted to ask about a flat.';
 
+export default function Contact() {
   return (
     <>
-      <Seo path="/contact"
-           title="Contact Ashima Engineering, Santoshpur, Kolkata"
-           description="Ashima Engineering, 1 Aurobindo Road, Santoshpur, Kolkata 700075. Phone, WhatsApp, hours and directions." />
+      <Seo path="/contact" title="Contact Ashima Engineering"
+           description={`${addressOneLine}. ${NAP.hours} Call ${NAP.phone}.`} />
 
-      <PageHero image="/images/site/street.jpg" eyebrow="Come and see us"
-                heading={<>Tell us what feels<br /><em>like home.</em></>}
-                marker="Santoshpur, since 1993">
-        <p className="mt-9 max-w-lg t-sm text-[hsl(var(--card))]/85">
-          The office is on Aurobindo Road in Santoshpur, and has been since 1993.
-          If you would rather see a building than an office, say so and we will
-          meet you at one.
-        </p>
+      <PageHero eyebrow="Contact" heading="Somebody is there most mornings">
+        Come to the office, or call. We would rather show you a site than send
+        you a brochure.
       </PageHero>
 
-      {/* --- 01 / The office ---------------------------------------------- */}
-      <Section eyebrow="01 / The office" tone="light">
-        <div className="mt-10 grid gap-14 lg:grid-cols-[1fr_1.1fr] lg:gap-20">
-          <Reveal>
-            <DisplayHeading className="d-1 text-[hsl(var(--primary))]"
-                            em="see us.">
-              Come and
-            </DisplayHeading>
-            <address className="mt-9 not-italic">
-              <span className="block d-3 text-[hsl(var(--primary))]">Ashima Engineering</span>
-              <span className="mt-3 block t-body text-[hsl(var(--muted-foreground))]">
-                {NAP.street}<br />{NAP.locality}<br />
-                {NAP.city} {NAP.postcode}<br />{NAP.region}, India
-              </span>
-            </address>
-            <div className="mt-9 flex flex-wrap gap-3">
-              <a href={telHref}
-                 className="flex items-center gap-2 bg-[hsl(var(--primary))] px-5 py-3.5 u-label text-[hsl(var(--card))] transition-transform hover:-translate-y-1"
-                 data-testid="link-contact-phone">
-                <Phone size={14} /> {NAP.phone}
+      <Band testid="section-contact">
+        <div className="grid gap-10 lg:grid-cols-2 lg:gap-16">
+          <div>
+            <DefList rows={[
+              ['Office', <>{NAP.street}, {NAP.locality}<br />{NAP.city}, {NAP.region} {NAP.postcode}</>],
+              ['Open', NAP.hours],
+              ['Phone', <a href={telHref} className="underline underline-offset-4" data-testid="link-contact-phone">{NAP.phone}</a>],
+              ['Email', <a href={mailHref} className="underline underline-offset-4" data-testid="link-contact-email">{NAP.email}</a>],
+            ]} />
+
+            <div className="mt-6 flex flex-col gap-3 sm:flex-row">
+              <a href={telHref} data-testid="link-contact-call"
+                 className="inline-flex min-h-13 flex-1 items-center justify-center gap-2 rounded-[var(--radius)] bg-[hsl(var(--accent))] px-6 u-label text-[hsl(var(--accent-foreground))]">
+                <Phone size={16} aria-hidden="true" /> Call
               </a>
-              <a href={whatsappHref('Hello, I saw your website.')} rel="noopener" target="_blank"
-                 className="flex items-center gap-2 border border-[hsl(var(--primary))]/30 px-5 py-3.5 u-label text-[hsl(var(--primary))] transition-colors hover:border-[hsl(var(--accent))] hover:text-[hsl(var(--accent))]"
-                 data-testid="link-contact-whatsapp">
-                WhatsApp <ArrowUpRight size={14} />
-              </a>
-              <a href={mailHref}
-                 className="flex items-center gap-2 border border-[hsl(var(--primary))]/30 px-5 py-3.5 u-label text-[hsl(var(--primary))] transition-colors hover:border-[hsl(var(--accent))] hover:text-[hsl(var(--accent))]"
-                 data-testid="link-contact-email">
-                <Mail size={14} /> Email
+              <a href={whatsappHref(WHATSAPP)} data-testid="link-contact-whatsapp"
+                 className="inline-flex min-h-13 flex-1 items-center justify-center gap-2 rounded-[var(--radius)] border border-[hsl(var(--border))] bg-[hsl(var(--card))] px-6 u-label text-[hsl(var(--primary))]">
+                <MessageCircle size={16} aria-hidden="true" /> WhatsApp
               </a>
             </div>
-            <p className="mt-7 u-label text-[hsl(var(--muted-foreground))]">
-              {NAP.hours}
-            </p>
+
+            <div className="mt-6 aspect-[16/10] overflow-hidden rounded-[var(--radius)] border border-[hsl(var(--border))] bg-[hsl(var(--muted))]">
+              <iframe title="Map showing the Ashima Engineering office"
+                      src={mapsEmbed(addressOneLine)} loading="lazy"
+                      className="size-full border-0" referrerPolicy="no-referrer-when-downgrade" />
+            </div>
+            <a href={mapsDirections(addressOneLine)} target="_blank" rel="noreferrer"
+               data-testid="link-contact-directions"
+               className="mt-4 inline-flex items-center gap-2 u-label text-[hsl(var(--accent))]">
+              <MapPin size={15} aria-hidden="true" /> Directions
+            </a>
+
             <p className="gap-note">
-              <strong>Match the Google profile to this.</strong> The hours
-              shown above &mdash; {NAP.hours} &mdash; are what the profile
-              should say. Sunday is when working homebuyers actually visit
-              sites, so the profile should say so too.
+              <strong>Match the Google profile to this.</strong> The hours shown
+              above &mdash; {NAP.hours} &mdash; are what the profile should say.
+              Sunday is when working homebuyers actually visit sites, so the
+              profile should say so too.
             </p>
-          </Reveal>
+          </div>
 
-          <Reveal delay={1}>
-            <div className="aspect-[1.1] overflow-hidden bg-[hsl(var(--muted))]">
-              <img src="/images/site/street.jpg" loading="lazy"
-                   alt="A quiet tree-lined street in Santoshpur, South Kolkata, with cycle rickshaws at the kerb. Stand-in photograph."
-                   className="h-full w-full object-cover" />
+          <div>
+            <Head eyebrow="Or write to us"
+                  lede="Tell us what you are looking for. We reply within one working day.">
+              Tell us what you need
+            </Head>
+            <div className="mt-7">
+              <EnquiryForm name="contact-enquiry" />
             </div>
-          </Reveal>
+          </div>
         </div>
-      </Section>
-
-      {/* --- 02 / Enquire -------------------------------------------------- */}
-      <Section id="enquire" eyebrow="02 / Let us talk" tone="dark">
-        <div className="mt-4 grid gap-14 lg:grid-cols-[.78fr_1.22fr] lg:gap-24">
-          <Reveal>
-            <DisplayHeading className="d-1"
-                            em="you are looking for.">
-              Tell us what
-            </DisplayHeading>
-            <p className="mt-10 max-w-sm t-sm text-[hsl(var(--card))]/72">
-              Tell us what you&rsquo;re looking for and someone will call you back
-              within one working day.
-            </p>
-          </Reveal>
-          <Reveal delay={1}>
-            <EnquiryForm name="contact-enquiry" onDark />
-          </Reveal>
-        </div>
-      </Section>
-
-      {/* --- 03 / Finding us ---------------------------------------------- */}
-      <Section eyebrow="03 / Finding us" tone="card">
-        <div className="mt-2 grid gap-9 lg:grid-cols-[.8fr_1.8fr]">
-          <div />
-          <Reveal>
-            <DisplayHeading className="max-w-3xl d-1 text-[hsl(var(--primary))]"
-                            em="us.">
-              Finding
-            </DisplayHeading>
-          </Reveal>
-        </div>
-        <div className="mt-12">
-          <iframe title="Map showing Ashima Engineering, 1 Aurobindo Road, Santoshpur, Kolkata"
-                  loading="lazy" width="100%" height={440}
-                  className="border border-[hsl(var(--primary))]/20"
-                  referrerPolicy="no-referrer-when-downgrade" src={mapsEmbed(mapQuery)} />
-          <a href={mapsDirections(mapQuery)} rel="noopener" target="_blank"
-             className="mt-5 inline-flex items-center gap-2 border-b border-[hsl(var(--primary))]/35 pb-1.5 u-label text-[hsl(var(--primary))] hover:border-[hsl(var(--accent))] hover:text-[hsl(var(--accent))]">
-            <MapPin size={13} /> Directions <ArrowUpRight size={13} />
-          </a>
-        </div>
-      </Section>
+      </Band>
     </>
   );
 }

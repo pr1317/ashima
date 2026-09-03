@@ -5,35 +5,28 @@ import { Seo } from '@/components/seo';
 export default function NotFound() {
   return (
     <>
-      <Seo path="/404" noindex
-           title="Page not found, Ashima Engineering"
-           description="That page does not exist." />
+      <Seo path="/404" noindex title="Page not found, Ashima Engineering"
+           description="That page is not here." />
 
-      <section className="on-dark relative flex min-h-[80vh] items-center overflow-hidden bg-[hsl(var(--primary))] pt-32 text-[hsl(var(--card))]">
-        <div className="absolute inset-0 bg-cover bg-center opacity-25 mix-blend-luminosity"
-             style={{ backgroundImage: "url('/images/projects/hero.jpg')" }} aria-hidden="true" />
-        <div className="absolute inset-0 bg-[hsl(24_30%_10%/.35)]" />
-        <div className="absolute -right-20 top-24 h-72 w-72 rounded-full border border-[hsl(var(--secondary))]/25" />
-        <div className="relative z-10 mx-auto w-full max-w-[1380px] px-6 py-20 lg:px-12">
-          <div className="hero-eyebrow hero-gold mb-7 inline-flex items-center gap-3 u-eyebrow">
-            <span className="h-px w-10 bg-[hsl(var(--secondary))]" />
-            404
-          </div>
-          <h1 className="font-display d-page">
-            That page<br /><em>isn&rsquo;t here.</em>
+      <section className="on-dark flex min-h-[60vh] items-center bg-[hsl(var(--primary))] py-16 text-[hsl(var(--card))]"
+               data-testid="section-not-found">
+        <div className="mx-auto w-full max-w-[1380px] px-5 lg:px-12">
+          <p className="u-eyebrow text-[hsl(var(--secondary))]">404</p>
+          <h1 className="mt-4 max-w-[16ch] d-page text-[hsl(var(--card))]">
+            That page has moved on.
           </h1>
-          <p className="mt-10 max-w-md t-sm text-[hsl(var(--card))]/85">
-            The link may be old, or the project may have been handed over and moved
-            into the record.
+          <p className="mt-5 max-w-[42ch] t-body text-[hsl(var(--card))]/80">
+            The two people usually end up looking for are the buildings, and a
+            way to reach us.
           </p>
-          <div className="mt-10 flex flex-wrap gap-3">
-            <Link href="/projects"
-                  className="flex items-center gap-2 bg-[hsl(var(--secondary))] px-5 py-3.5 u-label text-[hsl(var(--primary))] transition-transform hover:-translate-y-1">
-              Every project since 1995 <ArrowUpRight size={14} />
+          <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+            <Link href="/projects" data-testid="link-404-projects"
+                  className="inline-flex min-h-13 items-center justify-center gap-2 rounded-[var(--radius)] bg-[hsl(var(--secondary))] px-7 u-label text-[hsl(var(--primary))]">
+              The projects <ArrowUpRight size={15} aria-hidden="true" />
             </Link>
-            <Link href="/"
-                  className="flex items-center gap-2 border border-[hsl(var(--card))]/35 px-5 py-3.5 u-label text-[hsl(var(--card))] transition-colors hover:border-[hsl(var(--secondary))] hover:text-[hsl(var(--secondary))]">
-              Home
+            <Link href="/contact" data-testid="link-404-contact"
+                  className="inline-flex min-h-13 items-center justify-center gap-2 rounded-[var(--radius)] border border-[hsl(var(--card))]/40 px-7 u-label text-[hsl(var(--card))]">
+              Contact
             </Link>
           </div>
         </div>
