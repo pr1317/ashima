@@ -4,7 +4,16 @@
 import fs from 'node:fs';
 import path from 'node:path';
 
-const ORIGIN = 'https://www.ashimaengineering.in';
+/* Read out of src/lib/site.ts rather than kept as a second copy here: this
+ * script and the app must agree on the host, and when they were written down
+ * separately they drifted — the app moved to the apex domain and the sitemap
+ * carried on advertising www, which is worse than useless to a crawler. */
+const ORIGIN = (() => {
+  const m = fs.readFileSync('src/lib/site.ts', 'utf8')
+    .match(/export const SITE_ORIGIN = '([^']+)'/);
+  if (!m) throw new Error('sitemap: no SITE_ORIGIN in src/lib/site.ts');
+  return m[1];
+})();
 const DIST = 'dist';
 
 const source = fs.readFileSync('src/data/projects.ts', 'utf8');

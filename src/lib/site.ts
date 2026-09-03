@@ -34,7 +34,11 @@ export const NAP = {
   lng: settings.lng,
 } as const;
 
-export const SITE_ORIGIN = 'https://www.ashimaengineering.in';
+/** The apex, with no www — this is the host Netlify actually serves and the
+ *  one the domain is set to. It has to match exactly: it is the base for every
+ *  canonical tag, the sitemap and the schema.org record, so a www here would
+ *  point search engines at an address the site does not answer on. */
+export const SITE_ORIGIN = 'https://ashimaengineering.in';
 
 export const addressOneLine =
   `${NAP.street}, ${NAP.locality}, ${NAP.city}, ${NAP.region} ${NAP.postcode}`;
