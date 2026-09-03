@@ -1,89 +1,94 @@
 /* Compiles the markdown in content/ into the typed data modules the app reads:
  *   npm run content
- * The generated files under src/data are committed, so a normal build needs
- * nothing but this repository — the markdown is the thing you edit, and this
- * script is what turns it into something the app can import.
+ * This runs as the first step of every build, so the markdown is the single
+ * source of truth: edit a file under content/, push, and the site rebuilds
+ * from it. The generated files under src/data are committed too, which keeps
+ * `git diff` honest about what a content change actually did.
  *
- * The parser handles the subset of YAML the content files actually use:
- * scalars, inline arrays, one level of nested maps, and a list of image
- * objects. See CONTENT.md for what each field means. */
+ * Frontmatter is parsed with js-yaml on the YAML 1.2 core schema rather than
+ * by hand. The hand-rolled parser this replaces understood only the subset of
+ * YAML the hand-written files happened to use, which stopped being a safe
+ * assumption once the CMS started writing these files: a real YAML emitter
+ * folds long strings into block scalars and quotes differently, and the old
+ * parser would have read that as garbage without complaining. The core schema
+ * is deliberate — it resolves null, booleans and numbers and leaves every
+ * other scalar a string, so a bare date stays the text the editor typed
+ * instead of turning into a Date, and a locality of "no" stays "no". */
 import fs from 'node:fs';
 import path from 'node:path';
+import yaml from 'js-yaml';
 
+/* Both paths can be overridden on the command line — `node
+   scripts/gen-content.mjs <content dir> <output dir>` — so a test can compile
+   a fixture without the real generated modules going anywhere near it. */
 const SRC = process.argv[2] ?? 'content';
-const OUT = path.resolve('src/data');
+const OUT = path.resolve(process.argv[3] ?? 'src/data');
 
-const scalar = (raw) => {
-  const v = raw.trim();
-  if (v === '') return null;
-  if (v === 'true') return true;
-  if (v === 'false') return false;
-  if (v === 'null') return null;
-  if (/^\[.*\]$/.test(v)) return JSON.parse(v.replace(/'/g, '"'));
-  if (/^-?\d+(\.\d+)?$/.test(v)) return Number(v);
-  if (/^".*"$/.test(v) || /^'.*'$/.test(v)) return v.slice(1, -1);
-  return v;
-};
-
-/** Splits `key: value`, honouring a quoted key such as `"Doors and windows":`. */
-const splitPair = (line) => {
-  const m = line.match(/^("(?:[^"]*)"|[^:]+):\s?(.*)$/);
-  if (!m) return null;
-  return [m[1].replace(/^"|"$/g, ''), m[2]];
-};
-
-function parseFrontmatter(text) {
+function parseFrontmatter(text, file) {
   const m = text.match(/^---\r?\n([\s\S]*?)\r?\n---\r?\n?([\s\S]*)$/);
-  if (!m) throw new Error('no frontmatter');
+  if (!m) throw new Error(`${file}: no frontmatter`);
   const [, head, body] = m;
-  const data = {};
-  const lines = head.split(/\r?\n/);
-
-  for (let i = 0; i < lines.length; i++) {
-    const line = lines[i];
-    if (!line.trim() || line.startsWith('#')) continue;
-    if (/^\s/.test(line)) continue; // consumed by a block below
-    const pair = splitPair(line);
-    if (!pair) continue;
-    const [key, rest] = pair;
-
-    if (rest.trim() !== '') { data[key] = scalar(rest); continue; }
-
-    // Block value: either a list of maps (images) or a nested map (specifications).
-    const block = [];
-    while (i + 1 < lines.length && (/^\s+\S/.test(lines[i + 1]) || lines[i + 1].trim() === '')) {
-      block.push(lines[++i]);
-    }
-    const items = [];
-    let current = null;
-    let map = null;
-    for (const b of block) {
-      if (!b.trim()) continue;
-      const listItem = b.match(/^\s*-\s+(.*)$/);
-      if (listItem) {
-        current = {};
-        items.push(current);
-        const p = splitPair(listItem[1]);
-        if (p) current[p[0]] = scalar(p[1]);
-        continue;
-      }
-      const p = splitPair(b.trim());
-      if (!p) continue;
-      if (current) current[p[0]] = scalar(p[1]);
-      else { map ??= {}; map[p[0]] = scalar(p[1]); }
-    }
-    data[key] = items.length ? items : (map ?? []);
+  let data;
+  try {
+    data = yaml.load(head, { schema: yaml.CORE_SCHEMA, filename: file }) ?? {};
+  } catch (err) {
+    throw new Error(`${file}: frontmatter is not valid YAML — ${err.message}`);
   }
-  return { data, body: body.trim() };
+  if (typeof data !== 'object' || Array.isArray(data)) {
+    throw new Error(`${file}: frontmatter must be a set of key: value fields`);
+  }
+  return { data, body: (body ?? '').trim() };
 }
+
+/** Specifications are a table of headings and text. Hand-written files carry
+ *  them as a nested map, which reads well in an editor. The CMS cannot write
+ *  an open-ended map, so it writes a list of {label, value} rows instead and
+ *  this folds that form back into the same map. Both shapes are supported on
+ *  purpose: neither the files nor the CMS has to be converted to match the
+ *  other. Anything else — including the empty list a stripped-out block
+ *  leaves behind — becomes null, which is what "this project has no
+ *  specifications table" means downstream. */
+const toSpecifications = (value) => {
+  if (!value) return null;
+  if (Array.isArray(value)) {
+    const out = {};
+    for (const row of value) {
+      if (!row || typeof row !== 'object') continue;
+      const label = String(row.label ?? '').trim();
+      const text = String(row.value ?? '').trim();
+      if (label && text) out[label] = text;
+    }
+    return Object.keys(out).length ? out : null;
+  }
+  return typeof value === 'object' ? value : null;
+};
+
+/** The CMS writes every list field, so an untouched one arrives as null
+ *  rather than being absent. Both mean "empty" here. */
+const list = (value) => (Array.isArray(value) ? value : []);
+
+/** A number field the editor left blank comes back as an empty string, not
+ *  as a missing key. Left alone that empty string would flow all the way
+ *  into the typed data as `floors: ""`, so it is turned into null here — the
+ *  same thing an absent field means. A value that is genuinely not a number
+ *  is left exactly as typed, so the content lint can name it in the error
+ *  instead of quietly rounding it away. */
+const num = (value) => (value === null || value === undefined || value === '' ? null : value);
+
+/** Likewise for optional text: blank and absent are the same thing. */
+const str = (value) => {
+  if (value === null || value === undefined) return null;
+  const t = String(value).trim();
+  return t === '' ? null : value;
+};
 
 const read = (dir) =>
   fs.readdirSync(path.join(SRC, dir))
     .filter((f) => f.endsWith('.md'))
+    .sort()
     .map((f) => {
-      const { data, body } = parseFrontmatter(
-        fs.readFileSync(path.join(SRC, dir, f), 'utf8'),
-      );
+      const file = path.join(SRC, dir, f);
+      const { data, body } = parseFrontmatter(fs.readFileSync(file, 'utf8'), file);
       return { id: f.replace(/\.md$/, ''), ...data, body };
     });
 
@@ -92,23 +97,23 @@ const projects = read('projects').map((p) => ({
   name: p.name,
   locality: p.locality,
   status: p.status,
-  reraNumber: p.reraNumber ?? null,
+  reraNumber: str(p.reraNumber),
   reraVerified: p.reraVerified ?? false,
-  yearCompleted: p.yearCompleted ?? null,
-  possessionDate: p.possessionDate ?? null,
-  unitTypes: p.unitTypes ?? [],
-  carpetAreaMin: p.carpetAreaMin ?? null,
-  carpetAreaMax: p.carpetAreaMax ?? null,
-  totalUnits: p.totalUnits ?? null,
-  unitsAvailable: p.unitsAvailable ?? null,
-  floors: p.floors ?? null,
-  address: p.address ?? null,
-  lat: p.lat ?? null,
-  lng: p.lng ?? null,
-  specifications: Array.isArray(p.specifications) ? null : (p.specifications ?? null),
-  amenities: p.amenities ?? [],
-  nearby: p.nearby ?? null,
-  images: (Array.isArray(p.images) ? p.images : []).map((i) => ({
+  yearCompleted: num(p.yearCompleted),
+  possessionDate: str(p.possessionDate),
+  unitTypes: list(p.unitTypes),
+  carpetAreaMin: num(p.carpetAreaMin),
+  carpetAreaMax: num(p.carpetAreaMax),
+  totalUnits: num(p.totalUnits),
+  unitsAvailable: num(p.unitsAvailable),
+  floors: num(p.floors),
+  address: str(p.address),
+  lat: num(p.lat),
+  lng: num(p.lng),
+  specifications: toSpecifications(p.specifications),
+  amenities: list(p.amenities),
+  nearby: str(p.nearby),
+  images: list(p.images).map((i) => ({
     src: i.src, alt: i.alt, standIn: i.standIn ?? false,
   })),
   featured: p.featured ?? false,
@@ -122,7 +127,14 @@ const institutional = read('institutional')
     ({ id, organisation, scope, year, status, order: order ?? 0, copyIsDraft: copyIsDraft ?? true }))
   .sort((a, b) => a.order - b.order);
 
-const credits = JSON.parse(fs.readFileSync(path.join(SRC, 'image-credits.json'), 'utf8'));
+/* The credits file is an object with a `credits` list inside it rather than
+ * a bare list, because the CMS cannot present a top-level JSON array as an
+ * editable collection. The older bare-list form is still read, so a file
+ * written before that change does not become a build failure. */
+const creditsFile = JSON.parse(fs.readFileSync(path.join(SRC, 'image-credits.json'), 'utf8'));
+const credits = Array.isArray(creditsFile) ? creditsFile : list(creditsFile.credits);
+
+const settings = JSON.parse(fs.readFileSync(path.join(SRC, 'settings.json'), 'utf8'));
 
 const banner = `/* GENERATED by scripts/gen-content.mjs from the markdown content\n * collections. Edit the markdown and re-run the script; do not edit here. */\n\n`;
 
@@ -144,6 +156,12 @@ fs.writeFileSync(
   banner +
     `import type { ImageCredit } from '@/lib/types';\n\n` +
     `export const imageCredits: ImageCredit[] = ${JSON.stringify(credits, null, 2)};\n`,
+);
+fs.writeFileSync(
+  path.join(OUT, 'settings.ts'),
+  banner +
+    `import type { SiteSettings } from '@/lib/types';\n\n` +
+    `export const settings: SiteSettings = ${JSON.stringify(settings, null, 2)};\n`,
 );
 
 console.log(`projects: ${projects.length}  institutional: ${institutional.length}  credits: ${credits.length}`);

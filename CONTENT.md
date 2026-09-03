@@ -1,9 +1,14 @@
 # Adding and changing content
 
+> **There is now an editor at https://ashimaengineering.in/admin, and it is
+> the easier way to do everything on this page. See
+> [EDITING.md](EDITING.md).** This file describes the same content as files on
+> disk — useful when you are working in the repository, reviewing what the
+> editor wrote, or adding many entries at once.
+
 This is written for whoever looks after the Ashima Engineering website, not
-for a programmer. You do not need to understand the code to do anything on
-this page. If you can edit a text file and put photographs in a folder, you
-can run this site.
+for a programmer. If you can edit a text file and put photographs in a folder,
+you can run this site.
 
 Everything below happens inside this folder.
 

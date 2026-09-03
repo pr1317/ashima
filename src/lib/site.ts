@@ -1,30 +1,37 @@
+import { settings } from '@/data/settings';
+
 /** Name, address and phone. These must match the Google Business Profile
  *  character for character — local SEO treats any variation as a different
- *  business. Change them here and nowhere else. */
+ *  business, and a phone number that differs by a space is a different
+ *  number as far as the listing is concerned.
+ *
+ *  The changeable half now comes from content/settings.json, which the CMS
+ *  writes, so an editor can correct the opening hours without a developer.
+ *  What stays here is what is not an editorial decision: the legal name, the
+ *  country code, and the two placeholder flags, which describe whether the
+ *  contact details are real rather than what they say. */
 export const NAP = {
   name: 'Ashima Engineering',
-  street: '1 Aurobindo Road',
-  locality: 'Santoshpur',
-  city: 'Kolkata',
-  region: 'West Bengal',
-  postcode: '700075',
+  street: settings.street,
+  locality: settings.locality,
+  city: settings.city,
+  region: settings.region,
+  postcode: settings.postcode,
   country: 'IN',
-  /** Confirmed. Must stay identical to the Google Business Profile. */
-  phone: '+91 98300 53483',
+  phone: settings.phone,
   phoneIsPlaceholder: false,
-  email: 'partha.rgc@gmail.com',
+  email: settings.email,
   emailIsPlaceholder: false,
-  /** Open every day. Confirmed by the business; must match the Google
-   *  Business Profile, which is what most people see first. */
-  hours: 'Monday to Saturday, 10.30am to 8pm. Sunday, 11am to 5pm.',
-  hoursShort: 'Open every day',
+  hours: settings.hours,
+  hoursShort: settings.hoursShort,
+  openingHoursSchema: settings.openingHoursSchema,
   /** The firm was founded in 1993. The first building, Prarthana in
    *  Santoshpur, was handed over in 1995 — which is where the project
    *  record starts. Do not collapse the two dates into one. */
-  founded: '1993',
-  firstDelivery: '1995',
-  lat: 22.4966,
-  lng: 88.3897,
+  founded: settings.founded,
+  firstDelivery: settings.firstDelivery,
+  lat: settings.lat,
+  lng: settings.lng,
 } as const;
 
 export const SITE_ORIGIN = 'https://www.ashimaengineering.in';

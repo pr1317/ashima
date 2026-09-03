@@ -52,7 +52,7 @@ const organisationSchema = {
   },
   geo: { '@type': 'GeoCoordinates', latitude: NAP.lat, longitude: NAP.lng },
   areaServed: AREAS_SERVED.map((n) => ({ '@type': 'Place', name: `${n}, Kolkata` })),
-  openingHours: ['Mo-Sa 10:30-20:00', 'Su 11:00-17:00'],
+  openingHours: NAP.openingHoursSchema,
 };
 
 /** New page, top of the page — except when the URL carries a hash, which is

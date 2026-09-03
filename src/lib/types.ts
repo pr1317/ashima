@@ -81,3 +81,28 @@ export interface ImageCredit {
 }
 
 export const isLive = (p: Project) => LIVE_STATUSES.includes(p.status);
+
+/** The contact details and dates an editor can change in the CMS without
+ *  touching code. Generated into src/data/settings.ts from
+ *  content/settings.json; read through src/lib/site.ts, never directly, so
+ *  the derived values (tel: and WhatsApp links, the one-line address) all
+ *  move together when one of these changes. */
+export interface SiteSettings {
+  phone: string;
+  email: string;
+  hours: string;
+  hoursShort: string;
+  /** The same opening hours in schema.org's notation, for the structured
+   *  data search engines read. Kept beside the prose so the two are edited
+   *  in one place and cannot drift apart. */
+  openingHoursSchema: string[];
+  street: string;
+  locality: string;
+  city: string;
+  region: string;
+  postcode: string;
+  lat: number;
+  lng: number;
+  founded: string;
+  firstDelivery: string;
+}

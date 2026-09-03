@@ -1,3 +1,9 @@
+# The content editor is a separate app that lives under /admin. Netlify
+# serves real files ahead of the catch-all below, so /admin/ and everything
+# under it resolve on their own; this line only pins the bare path, which
+# would otherwise fall through to the site's own routing.
+/admin  /admin/index.html  200
+
 # Client-side routing: every path that is not a real file serves the app shell.
 # The 200 (rather than 301) is what keeps /projects/sraboni-court a real URL.
 /*  /index.html  200

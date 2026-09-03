@@ -6,7 +6,10 @@ South Kolkata, founded in 1993, with its first building handed over in 1995.
 It is also, legally, a real estate advertisement under Indian law. Read the
 WBRERA section below before changing anything on a project page.
 
-Non-technical content instructions are in **[CONTENT.md](CONTENT.md)**.
+Content is edited at **/admin** — see **[EDITING.md](EDITING.md)**, which is
+written for whoever updates the site rather than for a programmer.
+**[CONTENT.md](CONTENT.md)** describes the same content as files on disk, for
+when you would rather edit the markdown directly.
 
 ## Stack
 
@@ -16,12 +19,19 @@ by Tailwind v4 utilities in the components, over the design tokens in
 `src/index.css` — shutter green, brass and terracotta on a plaster ground.
 `src/styles/ashima.css` holds only what a utility cannot express: the WBRERA
 size rule, form fields, tables and the editorial notes. Hosting is Netlify
-static; the forms are Netlify Forms with a honeypot. No backend, no database,
-no CMS.
+static; the forms are Netlify Forms with a honeypot. No backend and no
+database: the CMS at `/admin` is [Decap](https://decapcms.org), which commits
+to the repository and lets Netlify rebuild, so there is still no server to
+keep running.
 
-Content is markdown in `content/`, compiled into typed data modules under
-`src/data/` by `scripts/gen-content.mjs` (`npm run content`). Those modules are
-committed, so a build needs nothing but this repository.
+Content is markdown and JSON in `content/`, compiled into typed data modules
+under `src/data/` by `scripts/gen-content.mjs` (`npm run content`). Every build
+runs that compile first, so the files in `content/` are the source of truth;
+the generated modules are committed as well, which keeps `git diff` honest
+about what a content change actually did. `scripts/lint-content.mjs` then
+refuses to build content that would ship a broken page, which is what stops a
+mistake made in the CMS from reaching the site — a failed build leaves the
+previous deploy live.
 
 Because a single-page app serves one `index.html`, two things are handled
 explicitly that a multi-page site gets for free: per-route `<title>`, meta and

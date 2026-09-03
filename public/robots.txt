@@ -1,2 +1,5 @@
 User-agent: *
 Allow: /
+# The content editor. It needs a GitHub sign-in to do anything, but there is
+# no reason for it to be crawled.
+Disallow: /admin
