@@ -92,11 +92,6 @@ export default function Contact() {
               Tell us what you&rsquo;re looking for and someone will call you back
               within one working day.
             </p>
-            <p className="gap-note">
-              <strong>Only publish the callback promise if it will be kept.</strong>{' '}
-              One working day is worth a great deal on a builder&rsquo;s website, and
-              it costs a great deal the first time somebody is left waiting.
-            </p>
           </Reveal>
           <Reveal delay={1}>
             <EnquiryForm name="contact-enquiry" onDark />

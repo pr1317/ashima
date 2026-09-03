@@ -38,7 +38,7 @@ export default function Founder() {
           <Reveal delay={1}>
             <div className="max-w-2xl space-y-6">
               <p className="t-lead text-[hsl(var(--primary))]">
-                Partha Pratim Roy read <b>[SUBJECT]</b> at the University of Calcutta.
+                Partha Pratim Roy read Science at the University of Calcutta.
               </p>
               <p className="t-body text-[hsl(var(--muted-foreground))]">
                 He came to construction sideways. His first business was
@@ -64,17 +64,6 @@ export default function Founder() {
               </p>
             </div>
 
-            <p className="gap-note">
-              <strong>Still to confirm.</strong> The degree subject is marked in the
-              text above and needs filling in. Also worth confirming that
-              &ldquo;subcontractor to L&amp;T&rdquo; is accurately put, and that
-              naming them this way is fine by everyone.
-            </p>
-            <p className="gap-note">
-              <strong>The last two lines must be true.</strong> If he does not
-              answer his own phone, cut them. They are the most persuasive sentences
-              on this page and the most damaging if a buyer finds them false.
-            </p>
           </Reveal>
         </div>
       </Section>

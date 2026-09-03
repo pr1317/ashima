@@ -5,7 +5,7 @@ import type { SiteSettings } from '@/lib/types';
 
 export const settings: SiteSettings = {
   "phone": "+91 98300 53483",
-  "email": "partha.rgc@gmail.com",
+  "email": "info@ashimaengineering.in",
   "hours": "Monday to Saturday, 10.30am to 8pm. Sunday, 11am to 5pm.",
   "hoursShort": "Open every day",
   "openingHoursSchema": [

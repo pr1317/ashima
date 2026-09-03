@@ -32,7 +32,7 @@ const steps: [string, string, string][] = [
   ['04', 'Terms and share', 'What you get and what we get, discussed openly, with the numbers behind it shown to you. This is the conversation most owners have been badly served on before.'],
   ['05', 'Development agreement', 'Registered. Your share, the possession date and the specifications are all in it.'],
   ['06', 'Sanction and approvals', 'Plans go to the corporation or the municipality. Nothing is demolished until sanction is in hand.'],
-  ['07', 'Construction', 'Typically [XX] months from the start of work. You can visit whenever you like.'],
+  ['07', 'Construction', 'Typically 20 months from the start of work. You can visit whenever you like.'],
   ['08', 'Handover of your share', 'You take possession of your flats. The completion certificate and the papers follow.'],
 ];
 
@@ -115,11 +115,6 @@ export default function LandOwners() {
             </Reveal>
           ))}
         </div>
-        <p className="gap-note">
-          <strong>To confirm before launch:</strong> the construction duration in
-          step 07 is written as <b>[XX] months</b>. Replace it with the figure the
-          business actually works to.
-        </p>
       </Section>
 
       {/* --- 03 / What we commit to --------------------------------------- */}
@@ -146,11 +141,12 @@ export default function LandOwners() {
           ))}
         </div>
         <p className="gap-note">
-          <strong>Draft, not yet approved.</strong> These four commitments were
-          written as plausible examples of what a joint-venture developer can
-          undertake. They are not yet Ashima Engineering&rsquo;s commitments. Partha
-          Pratim Roy needs to confirm, amend or replace each one before this page
-          goes live.
+          <strong>One of four still to confirm.</strong> The commitments on the
+          owner&rsquo;s share, on demolition waiting for sanction, and on visiting
+          the site unannounced are confirmed. The possession-date commitment says
+          the consequence of missing the date is written into the agreement beside
+          it &mdash; what that consequence is has not been confirmed, so that
+          clause should not go live as it stands.
         </p>
       </Section>
 
