@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'wouter';
+import { recordTotals } from '@/lib/content';
 import { NAP } from '@/lib/site';
 
 /** The homepage opening.
@@ -69,11 +70,16 @@ export function HeroHome() {
       </section>
 
       {/* The one-line summary of the record, on the deep ground so it reads as
-          part of the opening rather than as the start of the page proper. */}
-      <p className="flex flex-wrap items-center gap-x-6 gap-y-2 bg-[hsl(var(--primary))] px-5 py-4 u-micro text-[hsl(var(--card))]/70 lg:px-12"
+          part of the opening rather than as the start of the page proper. It is
+          centred and given room because on a phone it is the first hard number
+          a visitor meets, and it has to land at a glance rather than reward
+          reading. Both figures come from the project record — they used to be
+          typed in here, and the flat count had drifted away from the same
+          figure printed a screen further down. */}
+      <p className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 bg-[hsl(var(--primary))] px-5 py-5 text-center hero-meta text-[hsl(var(--card))]/70 min-[380px]:gap-x-8 lg:gap-x-14 lg:px-12 lg:py-6"
          data-testid="text-hero-meta">
-        <span><b className="font-medium text-[hsl(var(--card))]">1,005</b> flats</span>
-        <span><b className="font-medium text-[hsl(var(--card))]">8</b> localities</span>
+        <span><b className="font-medium text-[hsl(var(--card))]">{recordTotals.flats.toLocaleString('en-IN')}</b> flats</span>
+        <span><b className="font-medium text-[hsl(var(--card))]">{recordTotals.localities}</b> localities</span>
         <span>Since <b className="font-medium text-[hsl(var(--card))]">{NAP.firstDelivery}</b></span>
       </p>
     </>
