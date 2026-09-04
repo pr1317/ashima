@@ -22,10 +22,10 @@ export function SiteFooter() {
             <address className="mt-4 t-sm not-italic text-[hsl(var(--card))]/85">
               {NAP.street}<br />{NAP.locality}<br />
               {NAP.city} {NAP.postcode}<br />{NAP.region}, India<br /><br />
-              <a href={telHref} className="transition-colors hover:text-[hsl(var(--secondary))]" data-testid="link-footer-phone">{NAP.phone}</a><br />
+              <a href={telHref} className="inline-flex min-h-11 items-center transition-colors hover:text-[hsl(var(--secondary))]" data-testid="link-footer-phone">{NAP.phone}</a><br />
               <a href={whatsappHref('Hello — I saw your website.')} rel="noopener" target="_blank"
-                 className="transition-colors hover:text-[hsl(var(--secondary))]" data-testid="link-footer-whatsapp">WhatsApp</a><br />
-              <a href={mailHref} className="transition-colors hover:text-[hsl(var(--secondary))]" data-testid="link-footer-email">{NAP.email}</a>
+                 className="inline-flex min-h-11 items-center transition-colors hover:text-[hsl(var(--secondary))]" data-testid="link-footer-whatsapp">WhatsApp</a><br />
+              <a href={mailHref} className="inline-flex min-h-11 items-center transition-colors hover:text-[hsl(var(--secondary))]" data-testid="link-footer-email">{NAP.email}</a>
               {/* The opening hours are the thing people come to a footer for,
                   so they are not dimmed with the rest of the block. */}
               <span className="mt-5 block text-[hsl(var(--secondary))]">{NAP.hours}</span>
@@ -34,22 +34,22 @@ export function SiteFooter() {
 
           <div>
             <h2 className="u-eyebrow text-[hsl(var(--secondary))]">Pages</h2>
-            <ul className="mt-4 space-y-2.5 t-sm text-[hsl(var(--card))]/85">
+            <ul className="mt-2 t-sm text-[hsl(var(--card))]/85">
               {NAV.slice(1).map((n) => (
                 <li key={n.href}>
-                  <Link href={n.href} className="hover:text-[hsl(var(--secondary))]">{n.label}</Link>
+                  <Link href={n.href} className="flex min-h-11 items-center hover:text-[hsl(var(--secondary))]">{n.label}</Link>
                 </li>
               ))}
-              <li><Link href="/about/founder" className="hover:text-[hsl(var(--secondary))]">Partha Pratim Roy</Link></li>
-              <li><Link href="/privacy" className="hover:text-[hsl(var(--secondary))]">Privacy</Link></li>
-              <li><Link href="/credits" className="hover:text-[hsl(var(--secondary))]">Image credits</Link></li>
+              <li><Link href="/about/founder" className="flex min-h-11 items-center hover:text-[hsl(var(--secondary))]">Partha Pratim Roy</Link></li>
+              <li><Link href="/privacy" className="flex min-h-11 items-center hover:text-[hsl(var(--secondary))]">Privacy</Link></li>
+              <li><Link href="/credits" className="flex min-h-11 items-center hover:text-[hsl(var(--secondary))]">Image credits</Link></li>
             </ul>
           </div>
         </div>
 
         <div className="mt-14 flex flex-col justify-between gap-3 u-micro text-[hsl(var(--card))]/58 sm:flex-row">
           <span>&copy; {year} Ashima Engineering. Building in South Kolkata since 1993.</span>
-          <span>Set in Cormorant Garamond and Karla. Logo in Ashima Sans, under the SIL OFL 1.1.</span>
+          <span>Set in Marcellus and Jost. Logo in Ashima Sans, under the SIL OFL 1.1.</span>
         </div>
       </div>
     </footer>

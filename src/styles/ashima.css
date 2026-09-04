@@ -178,6 +178,14 @@
   overflow-wrap: anywhere;
 }
 .rera a {
+  /* The strip is a compliance block, not a call to action, but the portal link
+     is still the one thing in it a reader can tap — so it gets a real hit area
+     rather than the 12px its type gives it. It stays inside the strip's own
+     column, so this costs the strip a little height and changes nothing about
+     the registration number's size, which is what the rules govern. */
+  display: flex;
+  align-items: center;
+  min-height: 44px;
   font-family: var(--app-font-sans);
   font-size: 0.72em;
   color: hsl(var(--primary));
