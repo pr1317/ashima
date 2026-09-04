@@ -26,8 +26,8 @@ export default function Contact() {
             <DefList rows={[
               ['Office', <>{NAP.street}, {NAP.locality}<br />{NAP.city}, {NAP.region} {NAP.postcode}</>],
               ['Open', NAP.hours],
-              ['Phone', <a href={telHref} className="underline underline-offset-4" data-testid="link-contact-phone">{NAP.phone}</a>],
-              ['Email', <a href={mailHref} className="underline underline-offset-4" data-testid="link-contact-email">{NAP.email}</a>],
+              ['Phone', <a href={telHref} className="inline-flex min-h-11 items-center underline underline-offset-4" data-testid="link-contact-phone">{NAP.phone}</a>],
+              ['Email', <a href={mailHref} className="inline-flex min-h-11 items-center underline underline-offset-4" data-testid="link-contact-email">{NAP.email}</a>],
             ]} />
 
             <div className="mt-6 flex flex-col gap-3 sm:flex-row">
@@ -48,7 +48,7 @@ export default function Contact() {
             </div>
             <a href={mapsDirections(addressOneLine)} target="_blank" rel="noreferrer"
                data-testid="link-contact-directions"
-               className="mt-4 inline-flex items-center gap-2 u-label text-[hsl(var(--accent))]">
+               className="mt-4 inline-flex min-h-11 items-center gap-2 u-label text-[hsl(var(--accent))]">
               <MapPin size={15} aria-hidden="true" /> Directions
             </a>
 

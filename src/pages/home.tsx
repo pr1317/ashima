@@ -81,7 +81,7 @@ export default function Home() {
                 </summary>
                 <div className="pb-6">
                   <p className="max-w-[62ch] t-body text-[hsl(var(--muted-foreground))]">{s.a}</p>
-                  <Link href={s.href} className="mt-4 inline-flex items-center gap-1.5 u-label text-[hsl(var(--accent))]"
+                  <Link href={s.href} className="mt-4 inline-flex min-h-11 items-center gap-1.5 u-label text-[hsl(var(--accent))]"
                         data-testid={`link-stream-${i}`}>
                     {s.cta} <ArrowUpRight size={14} aria-hidden="true" />
                   </Link>
@@ -135,7 +135,7 @@ export default function Home() {
               </div>
             ))}
           </div>
-          <Link href="/institutional" className="mt-6 inline-flex items-center gap-1.5 u-label text-[hsl(var(--secondary))]"
+          <Link href="/institutional" className="mt-6 inline-flex min-h-11 items-center gap-1.5 u-label text-[hsl(var(--secondary))]"
                 data-testid="link-institutional">
             The full institutional record <ArrowUpRight size={14} aria-hidden="true" />
           </Link>

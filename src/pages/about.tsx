@@ -121,7 +121,7 @@ export default function About() {
               Partha Pratim Roy
             </Head>
             <Link href="/about/founder" data-testid="link-founder"
-                  className="mt-6 inline-flex items-center gap-2 u-label text-[hsl(var(--accent))]">
+                  className="mt-6 inline-flex min-h-11 items-center gap-2 u-label text-[hsl(var(--accent))]">
               Read about him <ArrowUpRight size={15} aria-hidden="true" />
             </Link>
           </div>

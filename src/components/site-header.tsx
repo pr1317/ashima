@@ -57,7 +57,8 @@ export function SiteHeader() {
                 stuck ? 'border-b border-[hsl(var(--border))] shadow-[0_1px_18px_-12px_hsl(var(--primary)/.5)]'
                       : 'border-b border-transparent'}`}>
         <div className="mx-auto flex max-w-[1380px] items-center justify-between gap-4 px-5 py-3 lg:px-12 lg:py-4">
-          <Link href="/" aria-label="Ashima Engineering, home" data-testid="link-logo">
+          <Link href="/" aria-label="Ashima Engineering, home" data-testid="link-logo"
+                className="inline-flex min-h-11 items-center">
             <Logo variant="horizontal" className="h-9 w-auto text-[hsl(var(--primary))] lg:h-11" />
           </Link>
 
@@ -65,7 +66,7 @@ export function SiteHeader() {
             {NAV.slice(1).map((n) => (
               <Link key={n.href} href={n.href}
                     aria-current={current === n.href ? 'page' : undefined}
-                    className={`u-label transition-colors hover:text-[hsl(var(--accent))] ${
+                    className={`inline-flex min-h-11 items-center u-label transition-colors hover:text-[hsl(var(--accent))] ${
                       current === n.href
                         ? 'text-[hsl(var(--accent))]'
                         : 'text-[hsl(var(--primary))]'}`}

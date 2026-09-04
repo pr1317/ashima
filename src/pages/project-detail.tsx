@@ -102,13 +102,13 @@ export default function ProjectDetail() {
           )}
           <a href={mapsDirections(where)} target="_blank" rel="noreferrer"
              data-testid="link-directions"
-             className="mt-4 inline-flex items-center gap-2 u-label text-[hsl(var(--accent))]">
+             className="mt-4 inline-flex min-h-11 items-center gap-2 u-label text-[hsl(var(--accent))]">
             <MapPin size={15} aria-hidden="true" /> Directions
           </a>
         </Panel>
 
         <Link href="/projects" data-testid="link-back-projects"
-              className="mt-10 inline-flex items-center gap-2 u-label text-[hsl(var(--accent))]">
+              className="mt-10 inline-flex min-h-11 items-center gap-2 u-label text-[hsl(var(--accent))]">
           <ArrowLeft size={15} aria-hidden="true" /> All projects
         </Link>
       </Band>
