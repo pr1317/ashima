@@ -109,8 +109,14 @@ export function LocalityMap({ counts, value, onChange }: LocalityMapProps) {
             return (
               <g key={n.key} onClick={() => onChange(on ? 'all' : n.key)}
                  className="cursor-pointer" data-testid={`map-node-${n.key}`}>
-                {/* An invisible disc so a thumb has something generous to hit. */}
-                <circle cx={n.x} cy={n.y} r={Math.max(r + 16, 24)} fill="transparent" />
+                {/* An invisible disc so a thumb has something generous to hit.
+                    The floor is set from the narrowest phone: at 320px the map
+                    draws 278px wide, so a viewBox unit is 0.77 CSS px and a
+                    radius of 29 gives a 44px target — the accessible minimum.
+                    It stops short of 30, where the Jadavpur and Santoshpur
+                    discs (60 units apart) would start to overlap and steal
+                    each other's taps. */}
+                <circle cx={n.x} cy={n.y} r={Math.max(r + 16, 29)} fill="transparent" />
                 <circle cx={n.x} cy={n.y} r={r + 6} fill="hsl(var(--accent))"
                         opacity={on ? 0.18 : 0} className="lm-halo" />
                 <circle cx={n.x} cy={n.y} r={r}
