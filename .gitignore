@@ -4,3 +4,9 @@ dist-standalone
 .DS_Store
 *.tsbuildinfo
 public/admin/vendor/
+
+# Throwaway probe scripts and screenshots written at the repo root while
+# checking a build. They are scratch, and `git add -A` will otherwise sweep
+# them into a commit — which is how .layout.mjs reached the history.
+/.[a-z]*.mjs
+/.[a-z]*.png
